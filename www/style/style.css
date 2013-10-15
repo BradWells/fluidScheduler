@@ -1,0 +1,45 @@
+fieldset {
+	border: 0px;
+	display: inline-block;
+}
+
+#content {
+	position: absolute;
+	top: 60px;
+	bottom: 50px;
+	left: 0px;
+	right: 0px;
+}
+
+.right {
+	float: right;
+}
+
+#header {
+	top: 0px;
+	height: 40px;
+}
+
+#footer {
+	bottom: 0px;
+	height: 30px;
+}
+
+.static_bar {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+
+	margin: 0px;
+	padding: 10px;
+
+	background-color: #E8E8E8;
+}
+
+.icon {
+	padding: 5px;
+}
+
+.pane {
+	display: none;
+}
