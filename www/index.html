@@ -5,9 +5,14 @@
 
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 
-		<script src="res/jquery.min.js"></script>
-		<script src="res/arbor.js"></script>
-		<script src="res/jquery.gridster.js" charster="utf-8"></script>
+		<script language="javascript" type="text/javascript" src="res/jquery.min.js"></script>
+		<!--Arborjs: http://arborjs.org-->
+		<script language="javascript" type="text/javascript" src="res/arbor.js"></script>
+		<script language="javascript" type="text/javascript" src="res/arbor-graphics.js"></script>
+		<!--Renderer: http://blog.thinkst.com/2011/06/simple-graphs-with-arborjs.html-->
+		<script language="javascript" type="text/javascript" src="res/renderer.js"></script>
+		<!--Gridster: gridster.net-->
+		<script language="javascript" type="text/javascript" src="res/jquery.gridster.js" charster="utf-8"></script>
 	</head>
 
 	<body>
@@ -28,7 +33,47 @@
 		</div>
 
 		<div id="content">
-			<canvas id="workspace"></canvas>
+			<canvas id="workspace" width="800" height="300"></canvas>
+			<script language="javascript" type="text/javascript">
+				var sys = arbor.ParticleSystem(
+					{
+						friction:.5, //default .5
+						stiffness:600, //default 600
+						repulsion:1000, //default 1000
+						gravity:false, //default false
+						precision:0.6, //default 0.6
+						fps:55, //default 55
+						dt:0.02 //timestep, default 0.02
+					});
+				sys.renderer = Renderer("#workspace");
+				var testNode = sys.addNode(
+					'Test',
+					{
+						'color':'red',
+						'shape':'dot',
+						'label':'Test'
+					});
+				var testNode2 = sys.addNode(
+					'Test2',
+					{
+						'color':'blue',
+						'shape':'dot',
+						'label':'Test2'
+					});
+				sys.addEdge(testNode, testNode2);
+
+				var data = {
+					nodes:{
+						animals:{'color':'red','shape':'dot','label':'Animals'},
+						dog:{'color':'green','shape':'dot','label':'dog'},
+						cat:{'color':'blue','shape':'dot','label':'cat'}
+					},
+					edges:{
+						animals:{ dog:{}, cat:{} }
+					}
+				};
+				sys.graft(data);
+			</script>
 		</div>
 
 		<div id="attending_events_feed" class="pane">
