@@ -1,9 +1,11 @@
 (function(){
   
   Renderer = function(canvas){
+    var canvasid = canvas
     var canvas = $(canvas).get(0)
     var ctx = canvas.getContext("2d");
-    var gfx = arbor.Graphics(canvas)
+    var gfx = arbor.Graphics(canvas);
+    var zoom = 1;
     var particleSystem = null
 
     var that = {
@@ -11,14 +13,46 @@
         particleSystem = system
         particleSystem.screenSize(canvas.width, canvas.height) 
         particleSystem.screenPadding(40)
+        $(window).resize(that.resize);
+        that.resize();
+        that.initMouseHandling();
+      },
 
-        that.initMouseHandling()
+      resize:function(){
+        canvas.width = $(canvasid).width() * zoom;
+        canvas.height = $(canvasid).height() * zoom;
+        that.redraw();
+      },
+
+      zoomin:function(){
+        if(zoom < 1.9) {
+          zoom -= 0.1;
+        }
+        that.resize();
+      },
+
+      zoomout:function(){
+        if(zoom > 0.1) {
+          zoom += 0.1;
+        }
+        that.resize();
+      },
+
+      setzoom:function(val){
+        zoom = val;
+        that.resize();
+      },
+
+      zoom:function(val){
+        return zoom;
       },
 
       redraw:function(){
         if (!particleSystem) return
 
         gfx.clear() // convenience ƒ: clears the whole canvas rect
+
+        particleSystem.screenSize($(canvas).get(0).width, $(canvas).get(0).height)
 
         // draw the nodes & save their bounds for edge drawing
         var nodeBoxes = {}
