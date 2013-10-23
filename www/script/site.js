@@ -101,7 +101,7 @@ $("#add_contact").click(
 
 $("#click_me").click(
 	function() {
-		new_window = window.open('roomselect.html', 'Select Room', 'height=350,width=400');
+		new_window = window.open('roomselect.html', 'Select Room', 'height=650,width=650');
 		if (window.focus) {
 			new_window.focus();
 		}
