@@ -99,6 +99,14 @@ $("#add_contact").click(
 			});
 	});
 
+$("#click_me").click(
+	function() {
+		new_window = window.open('roomselect.html', 'Select Room', 'height=350,width=400');
+		if (window.focus) {
+			new_window.focus();
+		}
+	});
+
 
 
 
