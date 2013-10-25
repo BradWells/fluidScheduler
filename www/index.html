@@ -24,6 +24,42 @@
 	</head>
 
 	<body>
+		<div id="graph" class="content">
+			<canvas id="workspace" width="1920" height="960"></canvas>
+			<script>
+			</script>
+		</div>
+
+		<div id="public_events_feed" class="content events_feed">
+			<div id="public_pane" class="pane slide_box">
+				Public Events Feed
+			</div>
+			<div class="pane_button">
+				<a href="javascript:;" id="public_events_button">
+					<img src="img/glyphicons/glyphicons_223_chevron-right.png" />
+				</a>
+			</div>
+		</div>
+
+		<div id="attending_events_feed" class="content events_feed">
+			<div class="pane_button">
+				<a href="javascript:;" id="attending_events_button">
+					<img src="img/glyphicons/glyphicons_224_chevron-left.png" />
+				</a>
+			</div>
+			<div id="attending_pane" class="pane slide_box">
+				Attending Events Feed
+			</div>
+		</div>
+
+		<div id="add_event_form" class="slide_box">
+			Add Event Form
+		</div>
+
+		<div id="add_contact_form" class="slide_box">
+			Add Contact Form
+		</div>
+
 		<div id="header" class="static_bar align_top">
 			<span id="title">Event Center</span>
 			<span id="nav_icons" class="right">
@@ -38,20 +74,6 @@
 			</span>
 		</div>
 
-		<div id="public_events_feed" class="pane">
-			qwert
-		</div>
-
-		<div id="content">
-			<canvas id="workspace" width="1920" height="960"></canvas>
-			<script>
-			</script>
-		</div>
-
-		<div id="attending_events_feed" class="pane">
-			yuiop
-		</div>
-
 		<div id="footer" class="static_bar align_bottom">
 			<span id="zoom">
 				<span id="icon_zoomout">
@@ -63,7 +85,9 @@
 				</span>
 			</span>
 			<span id="buttons" class="right">
+				<!--
 				<a href="javascript:;" id="click_me" class="button">Click Me!</a>
+				-->
 				<a href="javascript:;" id="add_event" class="button">Add Event</a>
 				<a href="javascript:;" id="add_contact" class="button">Add Contacts</a>
 			</span>

@@ -5,8 +5,8 @@
  */
 
 window.onresize = function(event) {
-	$("#workspace").width($("#content").width())
-	$("#workspace").height($("#content").height())
+	$("#workspace").width($("#graph").width())
+	$("#workspace").height($("#graph").height())
 }
 
 window.onresize()
@@ -19,17 +19,6 @@ window.onresize()
  * Initiate arborjs
  *
  */
-
-// var sys = arbor.ParticleSystem(
-// 	{
-// 		friction:.5, //default .5
-// 		stiffness:600, //default 600
-// 		repulsion:1000, //default 1000
-// 		gravity:false, //default false
-// 		precision:0.6, //default 0.6
-// 		fps:55, //default 55
-// 		dt:0.02 //timestep, default 0.02
-// 	});
 
 var repulsion = 7;
 var stiffness = 300;
@@ -99,13 +88,13 @@ $("#add_contact").click(
 			});
 	});
 
-$("#click_me").click(
-	function() {
-		new_window = window.open('roomselect.html', 'Select Room', 'height=650,width=650');
-		if (window.focus) {
-			new_window.focus();
-		}
-	});
+// $("#click_me").click(
+// 	function() {
+// 		new_window = window.open('roomselect.html', 'Select Room', 'height=650,width=650');
+// 		if (window.focus) {
+// 			new_window.focus();
+// 		}
+// 	});
 
 
 
@@ -153,3 +142,40 @@ $("#slider").slider({
  	slide: changezoom,
  	change: changezoom
 });
+
+
+
+
+/*
+ *
+ * Pane Controls
+ *
+ */
+ 
+$("#public_events_button").click(
+	function() {
+		var pane = $("#public_events_feed");
+		var left_pos = pane.offset().left;
+		if(left_pos > -400) {
+			// hide
+			pane.animate({'left': '-402px'}, 1000);
+		}
+		else {
+			// show
+			pane.animate({'left': '-2px'}, 1000);
+		}
+	});
+
+$("#attending_events_button").click(
+	function() {
+		var pane = $("#attending_events_feed");
+		var right_pos = ($(window).width() - (pane.offset().left + pane.outerWidth()));
+		if(right_pos > -400) {
+			// hide
+			pane.animate({'right': '-402px'}, 1000);
+		}
+		else {
+			// show
+			pane.animate({'right': '-2px'}, 1000);
+		}
+	});

@@ -1,3 +1,5 @@
+/* Entire Page */
+
 body {
 	font-family: Arial;
 	font-size: 10pt;
@@ -8,13 +10,8 @@ a {
 	text-decoration: none;
 }
 
-#content {
-	position: absolute;
-	top: 60px;
-	bottom: 45px;
-	left: 0px;
-	right: 0px;
-}
+
+/* Header and Footer */
 
 #header {
 	top: 0px;
@@ -41,13 +38,6 @@ a {
 	bottom: 14px;
 }
 
-.icon {
-	margin-left: 15px;
-	padding: 5px;
-	font-size: 12pt;
-	font-weight: bold;
-}
-
 .right {
 	float: right;
 }
@@ -61,8 +51,11 @@ a {
 	background-color: #E8E8E8;
 }
 
-.pane {
-	display: none;
+.icon {
+	margin-left: 15px;
+	padding: 5px;
+	font-size: 12pt;
+	font-weight: bold;
 }
 
 .button {
@@ -80,4 +73,58 @@ a {
 	background: -ms-linear-gradient(top, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* IE10+ */
 	background: linear-gradient(to bottom, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+}
+
+
+/* Panes */
+
+#public_events_feed {
+	left: -1px;
+}
+
+#attending_events_feed {
+	right: -1px;
+}
+
+.content {
+	position: absolute;
+	top: 60px;
+	bottom: 45px;
+}
+
+.events_feed * {
+	float: left;
+}
+
+.public_pane {
+	left: 0px;
+}
+
+.attending_pane {
+	right: 0px;
+}
+
+.pane {
+	height: 100%;
+	width: 400px;
+}
+
+.pane_button {
+	margin-top: 10px;
+	padding: 5px;
+}
+
+.slide_box {
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+}
+
+
+/* Workspace */
+
+#graph {
+	left: 0px;
+	right: 0px;
 }
