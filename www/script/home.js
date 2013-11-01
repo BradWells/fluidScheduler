@@ -1,6 +1,6 @@
 /*
  *
- * Window resizing
+ * Handle window resizing
  *
  */
 
@@ -10,6 +10,24 @@ window.onresize = function(event) {
 }
 
 window.onresize()
+
+
+
+
+/*
+ *
+ * Lock window scrolling
+ *
+ */
+var scrollPosition = [
+    self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+    self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+];
+var html = jQuery('html');
+html.data('scroll-position', scrollPosition);
+html.data('previous-overflow', html.css('overflow'));
+html.css('overflow', 'hidden');
+window.scrollTo(scrollPosition[0], scrollPosition[1]);
 
 
 
@@ -159,10 +177,14 @@ $("#public_events_button").click(
 		if(left_pos > -400) {
 			// hide
 			pane.animate({'left': '-402px'}, 1000);
+			$(this).empty();
+			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
 		else {
 			// show
 			pane.animate({'left': '-2px'}, 1000);
+			$(this).empty();
+			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 	});
 
@@ -173,9 +195,13 @@ $("#attending_events_button").click(
 		if(right_pos > -400) {
 			// hide
 			pane.animate({'right': '-402px'}, 1000);
+			$(this).empty();
+			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 		else {
 			// show
 			pane.animate({'right': '-2px'}, 1000);
+			$(this).empty();
+			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
 	});
