@@ -58,7 +58,24 @@ a {
 	font-weight: bold;
 }
 
-.button {
+a.button {
+	padding: 6px;
+	margin: 2px;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+
+	background: #A02B2C; /* Old browsers */
+	background: -moz-linear-gradient(top, #B53032 0%, #A02B2C 44%, #6B1D1E 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B53032), color-stop(44%,#A02B2C), color-stop(100%,#6B1D1E)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #B53032 0%,#A02B2C 44%,##6B1D1E 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+}
+
+a.button.force_css {
 	padding: 6px;
 	margin: 2px;
 	color: white;
@@ -119,7 +136,28 @@ a {
 	border: 1px;
 	border-style: solid;
 	border-color: #F2F2F2;
+
+	box-shadow: 0px 0px 3px 3px #E0E0E0;
+ 	-webkit-box-shadow: 0px 0px 3px 3px #E0E0E0;
+ 	-moz-box-shadow: 0px 0px 3px 3px #E0E0E0;
 }
+
+
+/* Form Boxes */
+
+.form_box {
+	height: 350px;
+	width: 400px;
+	position: absolute;
+	right: 15px;
+	bottom: -351px;
+}
+
+#accordion {
+	margin: 7px;
+	width: 386px;
+}
+
 
 
 /* Workspace */

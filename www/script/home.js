@@ -1,3 +1,62 @@
+var add_event_content = '<form>                                                                             ' +
+	'	<div id="accordion">                                                                                ' +
+	'		<h3>Event Info</h3>                                                                             ' +
+	'		<table>                                                                                         ' +
+	'			<tr>                                                                                        ' +
+	'				<td>Event Name:</td>                                                                    ' +
+	'				<td><input type="text" name="eventname" id="eventname"/></td>                           ' +
+	'			</tr>                                                                                       ' +
+	'			<tr>                                                                                        ' +
+	'				<td>Start Date:</td>                                                                    ' +
+	'				<td><input type="text" name="start" id="start" readonly/></td>                          ' +
+	'			</tr>                                                                                       ' +
+	'			<tr>                                                                                        ' +
+	'				<td>End Date:</td>                                                                      ' +
+	'				<td><input type="text" name="end" id="end" readonly/></td>                              ' +
+	'			</tr>                                                                                       ' +
+	'		</table>                                                                                        ' +
+	'		<h3>Room Search Criteria</h3>                                                                   ' +
+	'		<table>                                                                                         ' +
+	'			<tr>                                                                                        ' +
+	'				<td>Number attending:</td>                                                              ' +
+	'				<td>	                                                                                ' +
+	'					<select>                                                                            ' +
+	'						<option>0-24</option>                                                           ' +
+	'						<option>25-49</option>                                                          ' +
+	'						<option>50-74</option>                                                          ' +
+	'						<option>75-99</option>                                                          ' +
+	'						<option>100+</option>                                                           ' +
+	'					</select>                                                                           ' +
+	'				</td>                                                                                   ' +
+	'			</tr>                                                                                       ' +
+	'			<tr>                                                                                        ' +
+	'				<td>Buildings:</td>                                                                     ' +
+	'				<td>                                                                                    ' +
+	'					<div id="format">                                                                   ' +
+	'						<input type="checkbox" id="check1"/><label for="check1">Carver</label>          ' +
+	'						<input type="checkbox" id="check2"/><label for="check2">Gilman</label>          ' +
+	'						<input type="checkbox" id="check3"/><label for="check3">Hoover</label>          ' +
+	'						<input type="checkbox" id="check4"/><label for="check4">Howe</label>            ' +
+	'						<input type="checkbox" id="check5"/><label for="check5">Memorial Union</label>  ' +
+	'					</div>                                                                              ' +
+	'				</td>                                                                                   ' +
+	'			</tr>                                                                                       ' +
+	'		</table>                                                                                        ' +
+	'		<h3>Additional Information</h3>                                                                 ' +
+	'		<table>                                                                                         ' +
+	'			<tr>                                                                                        ' +
+	'				<td>Enter additional event information below:</td>                                      ' +
+	'			<tr>                                                                                        ' +
+	'			<tr>                                                                                        ' +
+	'				<td><textarea rows="4" cols="40" border="1"></textarea></td>                            ' +
+	'			</tr>                                                                                       ' +
+	'			<tr>                                                                                        ' +
+	'				<td><a href="javascript:;" id="createevent" class="button force_css">Create Event</a></td> ' +
+	'			</tr>                                                                                       ' +
+	'		</table>                                                                                        ' +
+	'	</div>                                                                                              ' +
+	'</form>'
+
 /*
  *
  * Handle window resizing
@@ -78,23 +137,69 @@ sys.graft(data);
 
 /*
  *
- * Buttons
+ * Add Event Button
  *
  */
 
  var foo = 1;
 
+ var open_box = function(button, buttonText, box, content) {
+ 	button.text(buttonText);
+	box.animate({'bottom': '19px'}, 1000);
+	box.removeClass('hidden');
+    box.empty();
+    box.html(content);
+
+ }
+
+ var close_box = function(button, buttonText, box) {
+	button.text(buttonText);
+	box.animate({'bottom': '-351px'}, 1000);
+	box.addClass('hidden');
+	box.empty();
+ }
+
 $("#add_event").click(
 	function() {
-		sys.addNode(
-			String(foo++),
-			{
-				'color':'green',
-				'shape':'dot',
-				'label':'Boop'
-			});
+		var that = $(this);
+		var box = $("#add_event_form");
+		var other_box = $("#add_contact_form");
+		if(!other_box.hasClass('hidden')) {
+			close_box($("#add_contact"), "Add Contacts", other_box);
+		}
+		if(box.hasClass('hidden')) {
+			open_box(that, "Cancel", box, add_event_content);
+
+			$('#start').datetimepicker();
+			$('#end').datetimepicker();
+			$('#accordion').accordion({ active: "false", collapsible: "true", animate: 0 });
+			$('#check').button();
+			$('#format').buttonset();
+			$('#createevent').click(
+				function() {
+					sys.addNode(
+						String(foo++),
+						{
+							'color':'green',
+							'shape':'dot',
+							'label': String($('#eventname').val())
+						});
+					close_box(that, "Add Event", box);
+				});
+		}
+		else {
+			close_box(that, "Add Event", box);
+		}
 	});
 
+
+
+
+/*
+ *
+ * Add Contact Button
+ *
+ */
 $("#add_contact").click(
 	function() {
 		sys.addNode(
@@ -105,14 +210,6 @@ $("#add_contact").click(
 				'label':'Beep'
 			});
 	});
-
-// $("#click_me").click(
-// 	function() {
-// 		new_window = window.open('roomselect.html', 'Select Room', 'height=650,width=650');
-// 		if (window.focus) {
-// 			new_window.focus();
-// 		}
-// 	});
 
 
 
@@ -173,35 +270,37 @@ $("#slider").slider({
 $("#public_events_button").click(
 	function() {
 		var pane = $("#public_events_feed");
-		var left_pos = pane.offset().left;
-		if(left_pos > -400) {
-			// hide
-			pane.animate({'left': '-402px'}, 1000);
-			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
-		}
-		else {
+		if(pane.hasClass('hidden')) {
 			// show
 			pane.animate({'left': '-2px'}, 1000);
+			pane.removeClass('hidden');
 			$(this).empty();
 			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
+		}
+		else {
+			// hide
+			pane.animate({'left': '-402px'}, 1000);
+			pane.addClass('hidden');
+			$(this).empty();
+			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
 	});
 
 $("#attending_events_button").click(
 	function() {
 		var pane = $("#attending_events_feed");
-		var right_pos = ($(window).width() - (pane.offset().left + pane.outerWidth()));
-		if(right_pos > -400) {
-			// hide
-			pane.animate({'right': '-402px'}, 1000);
-			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
-		}
-		else {
+		if(pane.hasClass('hidden')) {
 			// show
 			pane.animate({'right': '-2px'}, 1000);
+			pane.removeClass('hidden');
 			$(this).empty();
 			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
+		}
+		else {
+			// hide
+			pane.animate({'right': '-402px'}, 1000);
+			pane.addClass('hidden');
+			$(this).empty();
+			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 	});
