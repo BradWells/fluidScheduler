@@ -170,6 +170,46 @@ a.button.force_css {
 
 /* Event Page */
 
-.info {
+.event_content {
+	position: absolute;
+	top: 60px;
+	left: 0px;
+	right: 0px;
+}
+
+#topper {
+	background-color: blue;
+	height: 30px;
+}
+
+#event_img {
+	background-color: red;
 	float: left;
+	width: 350px;
+	height: 350px;
+}
+
+#event_text {
+	background-color: orange;
+	float: left;
+	height: 350px;
+}
+
+#attender {
+	background-color: yellow;
+	position: absolute;
+	right: 0px;
+}
+
+#upper {
+	height: 370px;
+}
+
+#grid {
+	background-color: green;
+}
+
+.info {
+	padding: 5px;
+	margin: 5px;
 }
