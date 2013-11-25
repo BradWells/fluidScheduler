@@ -19,6 +19,12 @@
 	<body>
 		<div id="header" class="static_bar align_top">
 			<span id="title">Event Center</span>
+			<span id="nav_icons" class="right">
+				<a href="index.html" id="signout" class="icon">
+					Sign Out
+					<img src="img/glyphicons/glyphicons_388_exit.png" />
+				</a>
+			</span>
 		</div>
 
 		<div class="bottomless_content">
@@ -29,23 +35,29 @@
 					<span class="message"></span>
 				</div>
 			</div>
-			<div id="signin_box">
+			<div id="settings_box">
 				<table class="form_table">
 					<tr>
-						<td><span class="label">Username</span></td>
+						<td><span class="label">New E-mail Address</span></td>
+						<td><input type="text" id="email" class="text_input" /></td>
+					</tr>
+					<tr>
+						<td><span class="label">New Username</span></td>
 						<td><input type="text" id="username" class="text_input" /></td>
 					</tr>
 					<tr>
-						<td><span class="label">Password</span></td>
+						<td><span class="label">New Password</span></td>
 						<td><input type="password" id="password" class="text_input" /></td>
+					</tr>
+					<tr><td colspan="2"><hr /></td></tr>
+					<tr>
+						<td><span class="label">Old Password</span></td>
+						<td><input type="password" id="old_password" class="text_input" /></td>
 					</tr>
 				</table>
 				<p>
-					<a href="forgot.html" class="link">Forgot your password?</a>
-				</p>
-				<p>
-					<a href="javascript:;" id="signin" class="button">Sign in</a>
-					<a href="register.html" class="button">Register</a>
+					<a href="workspace.html" class="button">Cancel</a>
+					<a href="javascript:;" id="submit_settings" class="button">Submit</a>
 				</p>
 			</div>
 		</div>

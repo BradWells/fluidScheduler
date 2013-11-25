@@ -75,6 +75,10 @@ a.button {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
 }
 
+a.button:hover {
+	background: #A02B2C;
+}
+
 a.button.force_css {
 	padding: 6px;
 	margin: 2px;
@@ -90,6 +94,10 @@ a.button.force_css {
 	background: -ms-linear-gradient(top, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* IE10+ */
 	background: linear-gradient(to bottom, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+}
+
+a.button.force_css:hover {
+	background: #A02B2C;
 }
 
 
@@ -170,11 +178,12 @@ a.button.force_css {
 
 /* Event Page */
 
-.event_content {
+.bottomless_content {
 	position: absolute;
 	top: 60px;
 	left: 0px;
 	right: 0px;
+	bottom: 0px;
 }
 
 #topper {
@@ -213,3 +222,149 @@ a.button.force_css {
 	padding: 5px;
 	margin: 5px;
 }
+
+
+/* Login Page */
+
+.text_input {
+	width: 180px;
+}
+
+.label {
+	font-weight: bold;
+}
+
+.link {
+	text-decoration: underline;
+	color: navy;
+}
+
+.form_table {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: right;
+}
+
+.box_spacer {
+	height: 25%;
+	width: 100%;
+}
+
+.message_box {
+	display: none;
+	position: relative;
+
+	width: 450px;
+	margin-left: auto;
+	margin-right: auto;
+
+	padding: 10px;
+	border: 1px;
+	border-style: solid;
+	border-radius: 5px;
+	text-align: center;
+
+	background-color: #DDFFD4;
+	border-color: #D1F2D1;
+}
+
+.cancel_message_button {
+	position: absolute;
+	top: 0px;
+	right: 4px;
+
+	font-weight: bold;
+	color: #003300;
+}
+
+.message {
+	color: #003300;
+}
+
+.error_box {
+	background-color: #FFDDD4;
+	border-color: #F2D1D1;
+}
+
+.error_text {
+	color: #A02B2C;
+}
+
+#signin_box {
+	width: 300px;
+	height: 125px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	padding: 10px;
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+	border-radius: 5px;
+	text-align: center;
+}
+
+
+/* Register Page */
+
+#register_box {
+	width: 350px;
+	height: 150px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	padding: 10px;
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+	border-radius: 5px;
+	text-align: center;
+}
+
+
+/* Forgot Page */
+
+#forgot_box {
+	width: 350px;
+	height: 70px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	padding: 10px;
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+	border-radius: 5px;
+	text-align: center;
+}
+
+
+/* Settings Page */
+
+#settings_box {
+	width: 400px;
+	height: 170px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	padding: 10px;
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+	border-radius: 5px;
+	text-align: center;
+}
+
