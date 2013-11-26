@@ -30,23 +30,50 @@
 				</div>
 			</div>
 			<div id="signin_box">
-				<table class="form_table">
-					<tr>
-						<td><span class="label">Username</span></td>
-						<td><input type="text" id="username" class="text_input" /></td>
-					</tr>
-					<tr>
-						<td><span class="label">Password</span></td>
-						<td><input type="password" id="password" class="text_input" /></td>
-					</tr>
-				</table>
-				<p>
-					<a href="forgot.html" class="link">Forgot your password?</a>
-				</p>
-				<p>
-					<a href="javascript:;" id="signin" class="button">Sign in</a>
-					<a href="register.html" class="button">Register</a>
-				</p>
+				<div id="signin_form">
+					<h3 class="form_title">Sign In</h3>
+					<table class="form_table">
+						<tr>
+							<td><span class="label">Username</span></td>
+							<td><input type="text" id="username" class="text_input" /></td>
+						</tr>
+						<tr>
+							<td><span class="label">Password</span></td>
+							<td><input type="password" id="password" class="text_input" /></td>
+						</tr>
+					</table>
+					<div class="form_actions">
+						<a href="forgot.html" class="link form_link">Forgot your password?</a>
+						<a href="javascript:;" id="signin" class="button form_button">Sign in</a>
+					</div>
+				</div>
+				<div id="form_divider">
+					<div id="divider"></div>
+				</div>
+				<div id="register_form">
+					<h3 class="form_title">Register</h3>
+					<table class="form_table">
+						<tr>
+							<td><span class="label">E-mail Address</span></td>
+							<td><input type="text" id="email" class="text_input" /></td>
+						</tr>
+						<tr>
+							<td><span class="label">Username</span></td>
+							<td><input type="text" id="username" class="text_input" /></td>
+						</tr>
+						<tr>
+							<td><span class="label">Password</span></td>
+							<td><input type="password" id="password" class="text_input" /></td>
+						</tr>
+						<tr>
+							<td><span class="label">Re-type Password</span></td>
+							<td><input type="password" id="re_password" class="text_input" /></td>
+						</tr>
+					</table>
+					<div class="form_actions">
+						<a href="javascript:;" id="register" class="button form_button">Register</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>
