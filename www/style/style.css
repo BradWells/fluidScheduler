@@ -422,25 +422,6 @@ a.button.force_css:hover {
 	width: 100%;
 }
 
-/* Register Page */
-
-#register_box {
-	width: 350px;
-	height: 150px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: auto;
-
-	padding: 10px;
-	background-color: #FFFFF5;
-	border: 1px;
-	border-style: solid;
-	border-color: #F2F2F2;
-	border-radius: 5px;
-	text-align: center;
-}
-
 
 /* Forgot Page */
 
