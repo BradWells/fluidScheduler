@@ -101,9 +101,9 @@ a.button:hover {
 	background: #A02B2C;
 }
 
-a.button.force_css {
+a.add_form_button {
 	padding: 6px;
-	margin: 2px;
+	margin: 10px;
 	color: white;
 	text-decoration: none;
 	border-radius: 5px;
@@ -118,8 +118,12 @@ a.button.force_css {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
 }
 
-a.button.force_css:hover {
+a.add_form_button:hover {
 	background: #A02B2C;
+}
+
+#form_button_spacer {
+	height: 10px;
 }
 
 
@@ -176,16 +180,19 @@ a.button.force_css:hover {
 /* Form Boxes */
 
 .form_box {
-	height: 350px;
-	width: 400px;
 	position: absolute;
 	right: 15px;
 	bottom: -351px;
+	padding-bottom: 45px;
 }
 
 #accordion {
 	margin: 7px;
-	width: 386px;
+	width: 400px;
+}
+
+#accordion table {
+	width: 400px;
 }
 
 
