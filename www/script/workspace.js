@@ -50,11 +50,28 @@ var add_event_content = '<form>                                                 
 	'			<tr>                                                                                        ' +
 	'				<td><textarea rows="4" cols="40" border="1"></textarea></td>                            ' +
 	'			</tr>                                                                                       ' +
+	'		</table>                                                                                        ' +
+	'	</div>                                                                                              ' +
+	'   <div id="form_button_spacer"></div>                                                                 ' +
+	'	<a href="javascript:;" id="createevent" class="add_form_button">Create Event</a>                    ' +
+	'</form>'
+
+var add_contact_content = '<form>                                                                           ' +
+	'	<div id="accordion">                                                                                ' +
+	'		<h3>Contact Info</h3>                                                                           ' +
+	'		<table>                                                                                         ' +
 	'			<tr>                                                                                        ' +
-	'				<td><a href="javascript:;" id="createevent" class="button force_css">Create Event</a></td> ' +
+	'				<td>Contact Name:</td>                                                                  ' +
+	'				<td><input type="text" name="contactname" id="contactname"/></td>                       ' +
+	'			</tr>                                                                                       ' +
+	'			<tr>                                                                                        ' +
+	'				<td>Contact E-mail:</td>                                                                ' +
+	'				<td><input type="text" name="contactemail" id="contactemail"/></td>                     ' +
 	'			</tr>                                                                                       ' +
 	'		</table>                                                                                        ' +
 	'	</div>                                                                                              ' +
+	'   <div id="form_button_spacer"></div>                                                                 ' +
+	'	<a href="javascript:;" id="createcontact" class="add_form_button">Create Contact</a>                ' +
 	'</form>'
 
 /*
@@ -115,7 +132,7 @@ var testNode2 = sys.addNode(
 	'Test2',
 	{
 		'color':'blue',
-		'shape':'dot',
+		'shape':'square',
 		'label':'Test2'
 	});
 sys.addEdge(testNode, testNode2);
@@ -123,8 +140,8 @@ sys.addEdge(testNode, testNode2);
 var data = {
 	nodes:{
 		animals:{'color':'red','shape':'dot','label':'Animals'},
-		dog:{'color':'green','shape':'dot','label':'dog'},
-		cat:{'color':'blue','shape':'dot','label':'cat'}
+		dog:{'color':'green','shape':'square','label':'dog'},
+		cat:{'color':'blue','shape':'square','label':'cat'}
 	},
 	edges:{
 		animals:{ dog:{}, cat:{} }
@@ -137,7 +154,7 @@ sys.graft(data);
 
 /*
  *
- * Add Event Button
+ * Add Event and Add Contact Buttons
  *
  */
 
@@ -165,14 +182,14 @@ $("#add_event").click(
 		var box = $("#add_event_form");
 		var other_box = $("#add_contact_form");
 		if(!other_box.hasClass('hidden')) {
-			close_box($("#add_contact"), "Add Contacts", other_box);
+			close_box($("#add_contact"), "Add Contact", other_box);
 		}
 		if(box.hasClass('hidden')) {
 			open_box(that, "Cancel", box, add_event_content);
 
 			$('#start').datetimepicker();
 			$('#end').datetimepicker();
-			$('#accordion').accordion({ active: "false", collapsible: "true", animate: 0 });
+			$('#accordion').accordion({ collapsible: "true", animate: 0 });
 			$('#check').button();
 			$('#format').buttonset();
 			$('#createevent').click(
@@ -192,23 +209,33 @@ $("#add_event").click(
 		}
 	});
 
-
-
-
-/*
- *
- * Add Contact Button
- *
- */
 $("#add_contact").click(
 	function() {
-		sys.addNode(
-			String(foo++),
-			{
-				'color':'orange',
-				'shape':'dot',
-				'label':'Beep'
-			});
+		var that = $(this);
+		var box = $("#add_contact_form");
+		var other_box = $("#add_event_form");
+		if(!other_box.hasClass('hidden')) {
+			close_box($("#add_event"), "Add Event", other_box);
+		}
+		if(box.hasClass('hidden')) {
+			open_box(that, "Cancel", box, add_contact_content);
+
+			$('#accordion').accordion({ collapsible: "true", animate: 0 });
+			$('#createcontact').click(
+				function() {
+					sys.addNode(
+						String(foo++),
+						{
+							'color':'orange',
+							'shape':'square',
+							'label': String($('#contactname').val())
+						});
+					close_box(that, "Add Contact", box);
+				});
+		}
+		else {
+			close_box(that, "Add Contact", box);
+		}
 	});
 
 
