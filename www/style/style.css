@@ -10,6 +10,11 @@ a {
 	text-decoration: none;
 }
 
+p {
+	margin: 5px;
+	margin-top: 10px;
+}
+
 
 /* Header and Footer */
 
@@ -52,10 +57,27 @@ a {
 }
 
 .icon {
+	position: relative;
+	top: 5px;
 	margin-left: 15px;
 	padding: 5px;
+}
+
+.icon_text {
+	position: relative;
+	bottom: 4px;
 	font-size: 12pt;
 	font-weight: bold;
+}
+
+.icon_image {
+	width: 20px;
+	height: 20px;
+}
+
+.icon_image_long {
+	width: 30px;
+	height: 20px;
 }
 
 a.button {
@@ -187,35 +209,42 @@ a.button.force_css:hover {
 }
 
 #topper {
-	background-color: blue;
 	height: 30px;
+	padding: 10px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
 }
 
-#event_img {
-	background-color: red;
+#event_imgage_wrapper {
 	float: left;
 	width: 350px;
 	height: 350px;
 }
 
 #event_text {
-	background-color: orange;
 	float: left;
 	height: 350px;
 }
 
 #attender {
-	background-color: yellow;
 	position: absolute;
 	right: 0px;
+	top: 370px;
 }
 
 #upper {
 	height: 370px;
+	width: 100%;
 }
 
 #grid {
 	background-color: green;
+}
+
+#event_image {
+	height: 340px;
+	width: 340px;
+	margin: 5px;
 }
 
 .info {
@@ -223,11 +252,43 @@ a.button.force_css:hover {
 	margin: 5px;
 }
 
+#back_link {
+	position: relative;
+	top: 3px;
+}
+
+.topper_text {
+	position: relative;
+	bottom: 4px;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+#share {
+	float: right;
+}
+
+#share_link {
+	position: relative;
+	bottom: 2px;
+	margin-left: 5px;
+}
+
+.event_text_title {
+	font-size: 60px;
+	font-weight: bold;
+}
+
+.event_text_info {
+	font-size: 28px;
+}
+
 
 /* Login Page */
 
 .text_input {
 	width: 180px;
+	padding: 2px;
 }
 
 .label {
