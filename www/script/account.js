@@ -44,7 +44,7 @@ $("#register").click(
 			raise_error_message("The password does not match the re-typed password.");
 		}
 		else {
-			document.location.href = "index.html";
+			document.location.href = "workspace.html";
 		}
 	});
 
