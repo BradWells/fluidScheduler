@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>ISU Event Center</title>
+
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+
+		<!--Jquery http://jquery.com-->
+		<script language="javascript" type="text/javascript" src="script/res/jquery.min.js"></script>
+
+		<!--Jquery UI http://jqueryui.com-->
+		<script language="javascript" type="text/javascript" src="script/res/jquery-ui.min.js"></script>
+		<script language="javascript" type="text/javascript" src="script/res/jquery-ui-timepicker-addon.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/res/jquery-ui.min.css">
+		<link rel="stylesheet" type="text/css" href="style/res/jquery-ui-timepicker-addon.css"/>
+
+		<!--Arborjs: http://arborjs.org-->
+		<script language="javascript" type="text/javascript" src="script/res/arbor.js"></script>
+		<script language="javascript" type="text/javascript" src="script/res/arbor-graphics.js"></script>
+
+		<!--Renderer: http://blog.thinkst.com/2011/06/simple-graphs-with-arborjs.html-->
+		<script language="javascript" type="text/javascript" src="script/renderer.js"></script>
+	</head>
+
+	<body>
+		<div id="graph" class="content">
+			<canvas id="workspace" width="1920" height="960"></canvas>
+			<script>
+			</script>
+		</div>
+
+		<div id="public_events_feed" class="content events_feed">
+			<div id="public_pane" class="pane slide_box">
+				Public Events Feed
+			</div>
+			<div class="pane_button">
+				<a href="javascript:;" id="public_events_button">
+					<img src="img/glyphicons/glyphicons_224_chevron-left.png" />
+				</a>
+			</div>
+		</div>
+
+		<div id="attending_events_feed" class="content events_feed">
+			<div class="pane_button">
+				<a href="javascript:;" id="attending_events_button">
+					<img src="img/glyphicons/glyphicons_223_chevron-right.png" />
+				</a>
+			</div>
+			<div id="attending_pane" class="pane slide_box">
+				Attending Events Feed
+			</div>
+		</div>
+
+		<div id="add_event_form" class="form_box slide_box hidden"></div>
+
+		<div id="add_contact_form" class="form_box slide_box hidden"></div>
+
+		<div id="header" class="static_bar align_top">
+			<span id="title">Event Center</span>
+			<span id="nav_icons" class="right">
+				<a href="index.html" id="signout" class="icon">
+					<span class="icon_text">Sign Out</span>
+					<img src="img/glyphicons/glyphicons_388_exit.png" class="icon_image">
+				</a>
+				<a href="settings.html" id="settings" class="icon">
+					<span class="icon_text">Account Settings</span>
+					<img src="img/glyphicons/glyphicons_136_cogwheel.png" class="icon_image">
+				</a>
+			</span>
+		</div>
+
+		<div id="footer" class="static_bar align_bottom">
+			<span id="zoom">
+				<span id="icon_zoomout">
+					<a href="javascript:;" id="zoomout">-</a>
+				</span>
+				<div id="slider"></div>
+				<span id="icon_zoomin">
+					<a href="javascript:;" id="zoomin">+</a>
+				</span>
+			</span>
+			<span id="buttons" class="right">
+				<a href="javascript:;" id="add_event" class="button">Add Event</a>
+				<a href="javascript:;" id="add_contact" class="button">Add Contact</a>
+			</span>
+		</div>
+	</body>
+
+	<script language="javascript" type="text/javascript" src="script/renderer.js"></script>
+	<script language="javascript" type="text/javascript" src="script/workspace.js"></script>
+</html>

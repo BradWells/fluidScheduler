@@ -1,56 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>ISU Event Center</title>
+		<title>Event Title</title>
 
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 
-		<script src="res/jquery.min.js"></script>
-		<script src="res/arbor.js"></script>
-		<script src="res/jquery.gridster.js" charster="utf-8"></script>
+		<!--Jquery http://jquery.com-->
+		<script language="javascript" type="text/javascript" src="script/res/jquery.min.js"></script>
+
+		<!--Jquery UI http://jqueryui.com-->
+		<script language="javascript" type="text/javascript" src="script/res/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/res/jquery-ui.min.css">
+
+		<!--Gridster: gridster.net-->
+		<script language="javascript" type="text/javascript" src="script/res/jquery.gridster.js" charster="utf-8"></script>
 	</head>
 
 	<body>
 		<div id="header" class="static_bar align_top">
 			<span id="title">Event Center</span>
-			<span id="nav_icons" class="right">
-				<span id="signout" class="icon">
-					<a href="">Sign Out</a>
-				</span>
-				<span id="settings" class="icon">
-					<a href="">Account Settings</a>
-				</span>
-			</span>
 		</div>
 
-		<div id="public_events_feed" class="pane">
-			qwert
-		</div>
-
-		<div id="content">
-			<canvas id="workspace"></canvas>
-		</div>
-
-		<div id="attending_events_feed" class="pane">
-			yuiop
-		</div>
-
-		<div id="footer" class="static_bar align_bottom">
-			<span id="zoom">
-				<span id="icon_zoomout">
-					<a href="">-</a>
-				</span>
-				<span id="zoom_slider">
-					-------------------------
-				</span>
-				<span id="icon_zoomin">
-					<a href="">+</a>
-				</span>
-			</span>
-			<span id="buttons" class="right">
-				<a href="" id="add_event" class="button">Add Event</a>
-				<a href="" id="add_contacts" class="button">Add Contacts</a>
-			</span>
+		<div class="bottomless_content">
+			<div class="box_spacer">
+				<div class="box_spacer"></div>
+				<div class="message_box">
+					<a href="javascript:;" class="cancel_message_button">x</a>
+					<span class="message"></span>
+				</div>
+			</div>
+			<div id="signin_box">
+				<div id="signin_form">
+					<h3 class="form_title">Sign In</h3>
+					<table class="form_table">
+						<tr>
+							<td><span class="label">Username</span></td>
+							<td><input type="text" id="username" class="text_input" /></td>
+						</tr>
+						<tr>
+							<td><span class="label">Password</span></td>
+							<td><input type="password" id="password" class="text_input" /></td>
+						</tr>
+					</table>
+					<div class="form_actions">
+						<a href="forgot.html" class="link form_link">Forgot your password?</a>
+						<a href="javascript:;" id="signin" class="button form_button">Sign in</a>
+					</div>
+				</div>
+				<div id="form_divider">
+					<div id="divider"></div>
+				</div>
+				<div id="register_form">
+					<h3 class="form_title">Register</h3>
+					<table class="form_table">
+						<tr>
+							<td><span class="label">E-mail Address</span></td>
+							<td><input type="text" id="email" class="text_input" /></td>
+						</tr>
+						<tr>
+							<td><span class="label">Username</span></td>
+							<td><input type="text" id="username" class="text_input" /></td>
+						</tr>
+						<tr>
+							<td><span class="label">Password</span></td>
+							<td><input type="password" id="password" class="text_input" /></td>
+						</tr>
+						<tr>
+							<td><span class="label">Re-type Password</span></td>
+							<td><input type="password" id="re_password" class="text_input" /></td>
+						</tr>
+					</table>
+					<div class="form_actions">
+						<a href="javascript:;" id="register" class="button form_button">Register</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
+
+	<script language="javascript" type="text/javascript" src="script/account.js"></script>
 </html>

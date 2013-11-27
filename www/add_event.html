@@ -1,0 +1,58 @@
+<form>
+	<div id="accordion">
+		<h3>Event Info</h3>
+		<table>
+			<tr>
+				<td>Event Name:</td>
+				<td><input type="text" name="eventname" id="eventname"/></td>
+			</tr>
+			<tr>
+				<td>Start Date:</td>
+				<td><input type="text" name="start" id="start" readonly/></td>
+			</tr>
+			<tr>
+				<td>End Date:</td>
+				<td><input type="text" name="end" id="end" readonly/></td>
+			</tr>
+		</table>
+		<h3>Room Search Criteria</h3>
+		<table>
+			<tr>
+				<td>Number attending:</td>
+				<td>	
+					<select>
+						<option>0-24</option>
+						<option>25-49</option>
+						<option>50-74</option>
+						<option>75-99</option>
+						<option>100+</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Buildings:</td>
+				<td>
+					<div id="format">
+						<input type="checkbox" id="check1"/><label for="check1">Carver</label>
+						<input type="checkbox" id="check2"/><label for="check2">Gilman</label>
+						<input type="checkbox" id="check3"/><label for="check3">Hoover</label>
+						<input type="checkbox" id="check4"/><label for="check4">Howe</label>
+						<input type="checkbox" id="check5"/><label for="check5">Memorial Union</label>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<h3>Additional Information</h3>
+		<table>
+			<tr>
+				<td>Enter additional event information below:</td>
+			<tr>
+			<tr>
+				<td><textarea rows="4" cols="50" border="1"></textarea></td>
+			</tr>
+			<tr>
+				<td><input type="submit" id="createevent" value="Create Event"/></td>
+			</tr>
+		</table>
+	</div>
+</form>	

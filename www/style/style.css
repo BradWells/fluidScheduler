@@ -1,15 +1,22 @@
+/* Entire Page */
+
 body {
 	font-family: Arial;
 	font-size: 10pt;
 }
 
-#content {
-	position: absolute;
-	top: 55px;
-	bottom: 45px;
-	left: 0px;
-	right: 0px;
+a {
+	color: black;
+	text-decoration: none;
 }
+
+p {
+	margin: 5px;
+	margin-top: 10px;
+}
+
+
+/* Header and Footer */
 
 #header {
 	top: 0px;
@@ -26,6 +33,16 @@ body {
 	font-weight: bold;
 }
 
+#zoom * {
+	float: left;
+}
+
+#zoom #slider {
+	width: 400px;
+	margin: 15px;
+	bottom: 14px;
+}
+
 .right {
 	float: right;
 }
@@ -34,29 +51,43 @@ body {
 	position: absolute;
 	left: 0px;
 	right: 0px;
-
 	margin: 0px;
 	padding: 15px;
-
 	background-color: #E8E8E8;
 }
 
 .icon {
+	position: relative;
+	top: 5px;
+	margin-left: 15px;
 	padding: 5px;
 }
 
-.pane {
-	display: none;
+.icon_text {
+	position: relative;
+	bottom: 4px;
+	font-size: 12pt;
+	font-weight: bold;
 }
 
-.button {
+.icon_image {
+	width: 20px;
+	height: 20px;
+}
+
+.icon_image_long {
+	width: 30px;
+	height: 20px;
+}
+
+a.button {
 	padding: 6px;
 	margin: 2px;
 	color: white;
 	text-decoration: none;
 	border-radius: 5px;
 
-	background: #a90329; /* Old browsers */
+	background: #A02B2C; /* Old browsers */
 	background: -moz-linear-gradient(top, #B53032 0%, #A02B2C 44%, #6B1D1E 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B53032), color-stop(44%,#A02B2C), color-stop(100%,#6B1D1E)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top, #B53032 0%,#A02B2C 44%,##6B1D1E 100%); /* Chrome10+,Safari5.1+ */
@@ -65,3 +96,376 @@ body {
 	background: linear-gradient(to bottom, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
 }
+
+a.button:hover {
+	background: #A02B2C;
+}
+
+a.add_form_button {
+	padding: 6px;
+	margin: 10px;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+
+	background: #A02B2C; /* Old browsers */
+	background: -moz-linear-gradient(top, #B53032 0%, #A02B2C 44%, #6B1D1E 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#B53032), color-stop(44%,#A02B2C), color-stop(100%,#6B1D1E)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #B53032 0%,#A02B2C 44%,##6B1D1E 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #B53032 0%,#A02B2C 44%,#6B1D1E 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+}
+
+a.add_form_button:hover {
+	background: #A02B2C;
+}
+
+#form_button_spacer {
+	height: 10px;
+}
+
+
+/* Panes */
+
+#public_events_feed {
+	left: -1px;
+}
+
+#attending_events_feed {
+	right: -1px;
+}
+
+.content {
+	position: absolute;
+	top: 60px;
+	bottom: 45px;
+}
+
+.events_feed * {
+	float: left;
+}
+
+.public_pane {
+	left: 0px;
+}
+
+.attending_pane {
+	right: 0px;
+}
+
+.pane {
+	height: 100%;
+	width: 400px;
+}
+
+.pane_button {
+	margin-top: 10px;
+	padding: 5px;
+}
+
+.slide_box {
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+
+	box-shadow: 0px 0px 3px 3px #E0E0E0;
+ 	-webkit-box-shadow: 0px 0px 3px 3px #E0E0E0;
+ 	-moz-box-shadow: 0px 0px 3px 3px #E0E0E0;
+}
+
+
+/* Form Boxes */
+
+.form_box {
+	position: absolute;
+	right: 15px;
+	bottom: -351px;
+	padding-bottom: 45px;
+}
+
+#accordion {
+	margin: 7px;
+	width: 400px;
+}
+
+#accordion table {
+	width: 400px;
+}
+
+
+
+/* Workspace */
+
+#graph {
+	left: 0px;
+	right: 0px;
+}
+
+
+/* Event Page */
+
+.bottomless_content {
+	position: absolute;
+	top: 60px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
+
+#topper {
+	height: 30px;
+	padding: 10px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+#event_imgage_wrapper {
+	float: left;
+	width: 350px;
+	height: 350px;
+}
+
+#event_text {
+	float: left;
+	height: 350px;
+}
+
+#attender {
+	position: absolute;
+	right: 0px;
+	top: 370px;
+}
+
+#upper {
+	height: 370px;
+	width: 100%;
+}
+
+#grid {
+	background-color: green;
+}
+
+#event_image {
+	height: 340px;
+	width: 340px;
+	margin: 5px;
+}
+
+.info {
+	padding: 5px;
+	margin: 5px;
+}
+
+#back_link {
+	position: relative;
+	top: 3px;
+}
+
+.topper_text {
+	position: relative;
+	bottom: 4px;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+#share {
+	float: right;
+}
+
+#share_link {
+	position: relative;
+	bottom: 2px;
+	margin-left: 5px;
+}
+
+.event_text_title {
+	font-size: 60px;
+	font-weight: bold;
+}
+
+.event_text_info {
+	font-size: 28px;
+}
+
+
+/* Login Page */
+
+.text_input {
+	width: 180px;
+	padding: 2px;
+}
+
+.label {
+	font-weight: bold;
+}
+
+.link {
+	text-decoration: underline;
+	color: navy;
+}
+
+.form_table {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: right;
+}
+
+.box_spacer {
+	height: 25%;
+	width: 100%;
+}
+
+.message_box {
+	display: none;
+	position: relative;
+
+	width: 450px;
+	margin-left: auto;
+	margin-right: auto;
+
+	padding: 10px;
+	border: 1px;
+	border-style: solid;
+	border-radius: 5px;
+	text-align: center;
+
+	background-color: #DDFFD4;
+	border-color: #D1F2D1;
+}
+
+.cancel_message_button {
+	position: absolute;
+	top: 0px;
+	right: 4px;
+
+	font-weight: bold;
+	color: #003300;
+}
+
+.message {
+	color: #003300;
+}
+
+.error_box {
+	background-color: #FFDDD4;
+	border-color: #F2D1D1;
+}
+
+.error_text {
+	color: #A02B2C;
+}
+
+#signin_box {
+	width: 700px;
+	height: 185px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	padding: 10px;
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+	border-radius: 5px;
+	text-align: center;
+}
+
+#signin_form {
+	float: left;
+	width: 300px;
+}
+
+#form_divider {
+	float: left;
+	width: 50px;
+	text-align: center;
+}
+
+#divider {
+	width: 2px;
+	height: 185px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	background-color: #D0D0D0;
+}
+
+#register_form {
+	float: left;
+	width: 350px;
+}
+
+.form_title {
+	text-align: left;
+	margin-left: 17px;
+	margin-top: 5px;
+	margin-bottom: 3px;
+}
+
+.form_link {
+	float: left;
+	position: relative;
+	left: 17px;
+	top: 8px;
+}
+
+.form_button {
+	float: right;
+	position: relative;
+	right: 17px;
+}
+
+.form_actions {
+	position: relative;
+	top: 5px;
+	width: 100%;
+}
+
+
+/* Forgot Page */
+
+#forgot_box {
+	width: 350px;
+	height: 70px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	padding: 10px;
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+	border-radius: 5px;
+	text-align: center;
+}
+
+
+/* Settings Page */
+
+#settings_box {
+	width: 400px;
+	height: 170px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	padding: 10px;
+	background-color: #FFFFF5;
+	border: 1px;
+	border-style: solid;
+	border-color: #F2F2F2;
+	border-radius: 5px;
+	text-align: center;
+}
+
