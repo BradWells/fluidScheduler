@@ -37,17 +37,10 @@ $("#register").click(
 
 $("#send_new_password").click(
 	function() {
-		var email = String($("#email").val());
-
-		document.location.href = "index.html";
+		$("#forgot_form").submit();
 	});
 
 $("#submit_settings").click(
 	function() {
-		var new_email = String($("#email").val());
-		var new_username = String($("#username").val());
-		var new_password = String($("#password").val());
-		var old_password = String($("#old_password").val());
-
-		document.location.href = "workspace.html";
+		$("#settings_form").submit();
 	});

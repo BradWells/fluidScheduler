@@ -8,16 +8,19 @@
 		</div>
 	</div>
 	<div id="forgot_box">
-		<table class="form_table">
-			<tr>
-				<td><span class="label">E-mail Address</span></td>
-				<td><input type="text" id="email" class="text_input" /></td>
-			</tr>
-		</table>
-		<p>
-			<a href="index.html" class="button">Cancel</a>
-			<a href="javascript:;" id="send_new_password" class="button">Send Me a New Password</a>
-		</p>
+		<form id="forgot_form" action="/send_new_password" method="post">
+			{{forgot_form.hidden_tag()}}
+			<table class="form_table">
+				<tr>
+					<td><span class="label">E-mail Address</span></td>
+					<td>{{forgot_form.email(id="email", class="text_input")}}</td>
+				</tr>
+			</table>
+			<p>
+				<a href="/index" class="button">Cancel</a>
+				<a href="javascript:;" id="send_new_password" class="button">Send Me a New Password</a>
+			</p>
+		</form>
 	</div>
 {% endblock %}
 {% block scripts %}

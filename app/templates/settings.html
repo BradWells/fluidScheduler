@@ -8,29 +8,32 @@
 		</div>
 	</div>
 	<div id="settings_box">
-		<table class="form_table">
-			<tr>
-				<td><span class="label">New E-mail Address</span></td>
-				<td><input type="text" id="email" class="text_input" /></td>
-			</tr>
-			<tr>
-				<td><span class="label">New Username</span></td>
-				<td><input type="text" id="username" class="text_input" /></td>
-			</tr>
-			<tr>
-				<td><span class="label">New Password</span></td>
-				<td><input type="password" id="password" class="text_input" /></td>
-			</tr>
-			<tr><td colspan="2"><hr /></td></tr>
-			<tr>
-				<td><span class="label">Old Password</span></td>
-				<td><input type="password" id="old_password" class="text_input" /></td>
-			</tr>
-		</table>
-		<p>
-			<a href="workspace.html" class="button">Cancel</a>
-			<a href="javascript:;" id="submit_settings" class="button">Submit</a>
-		</p>
+		<form id="settings_form" action="/change_settings" method="post">
+			{{settings_form.hidden_tag()}}
+			<table class="form_table">
+				<tr>
+					<td><span class="label">New E-mail Address</span></td>
+					<td>{{settings_form.email(id="email", class="text_input")}}</td>
+				</tr>
+				<tr>
+					<td><span class="label">New Username</span></td>
+					<td>{{settings_form.username(id="username", class="text_input")}}</td>
+				</tr>
+				<tr>
+					<td><span class="label">New Password</span></td>
+					<td>{{settings_form.password(id="password", class="text_input")}}</td>
+				</tr>
+				<tr><td colspan="2"><hr /></td></tr>
+				<tr>
+					<td><span class="label">Old Password</span></td>
+					<td>{{settings_form.old_password(id="old_password", class="text_input")}}</td>
+				</tr>
+			</table>
+			<p>
+				<a href="/workspace" class="button">Cancel</a>
+				<a href="javascript:;" id="submit_settings" class="button">Submit</a>
+			</p>
+		</form>
 	</div>
 {% endblock %}
 {% block scripts %}
