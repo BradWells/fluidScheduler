@@ -176,6 +176,39 @@ a.add_form_button:hover {
  	-moz-box-shadow: 0px 0px 3px 3px #E0E0E0;
 }
 
+.events_feed_title {
+	position: absolute;
+	top: 0px;
+	margin: 15px;
+}
+
+.events_feed_scrollarea {
+	position: absolute;
+	top: 35px;
+	bottom: 120px;
+
+	width: 380px;
+	margin: 10px;
+
+	overflow-y: scroll;
+}
+
+.events_feed_filter {
+	position: absolute;
+	bottom: 10px;
+	height: 100px;
+
+	width: 380px;
+	margin: 10px;
+
+	overflow-y: scroll;
+	background-color: #F2F2F2;
+	border-radius: 5px;
+	border: 1px;
+	border-style: solid;
+	border-color: #CCCCCC;
+}
+
 
 /* Form Boxes */
 
