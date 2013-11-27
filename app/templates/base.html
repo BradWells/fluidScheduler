@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>ISU Event Center - {{title}}</title>
+		{% if title %}
+			<title>ISU Event Center - {{title}}</title>
+		{% else %}
+			<title>ISU Event Center</title>
+		{% endif %}
 
 		<link rel="stylesheet" type="text/css" href="../static/css/style.css">
 
@@ -22,11 +26,11 @@
 			<span id="title">Event Center</span>
 			{% if g.user.is_authenticated() %}
 				<span id="nav_icons" class="right">
-					<a href="index.html" id="signout" class="icon">
+					<a href="/logout" id="signout" class="icon">
 						<span class="icon_text">Sign Out</span>
 						<img src="../static/img/glyphicons/glyphicons_388_exit.png" class="icon_image">
 					</a>
-					<a href="settings.html" id="settings" class="icon">
+					<a href="/settings" id="settings" class="icon">
 						<span class="icon_text">Account Settings</span>
 						<img src="../static/img/glyphicons/glyphicons_136_cogwheel.png" class="icon_image">
 					</a>
