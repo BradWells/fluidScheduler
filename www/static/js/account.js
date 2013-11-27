@@ -27,12 +27,12 @@ $(".cancel_message_button").click(
 
 $("#signin").click(
 	function() {
-		$("signin_form").submit();
+		$("#signin_form").submit();
 	});
 
 $("#register").click(
 	function() {
-		$("register_form").submit();
+		$("#register_form").submit();
 	});
 
 $("#send_new_password").click(
