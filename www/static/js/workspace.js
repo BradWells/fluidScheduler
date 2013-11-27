@@ -302,14 +302,14 @@ $("#public_events_button").click(
 			pane.animate({'left': '-2px'}, 1000);
 			pane.removeClass('hidden');
 			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
+			$(this).append('<img src="../static/img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 		else {
 			// hide
 			pane.animate({'left': '-402px'}, 1000);
 			pane.addClass('hidden');
 			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
+			$(this).append('<img src="../static/img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
 	});
 
@@ -321,13 +321,13 @@ $("#attending_events_button").click(
 			pane.animate({'right': '-2px'}, 1000);
 			pane.removeClass('hidden');
 			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
+			$(this).append('<img src="../static/img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
 		else {
 			// hide
 			pane.animate({'right': '-402px'}, 1000);
 			pane.addClass('hidden');
 			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
+			$(this).append('<img src="../static/img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 	});
