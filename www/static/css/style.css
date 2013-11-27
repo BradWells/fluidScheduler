@@ -409,7 +409,7 @@ a.add_form_button:hover {
 	text-align: center;
 }
 
-#signin_form {
+#signin_form_wrapper {
 	float: left;
 	width: 300px;
 }
@@ -431,7 +431,7 @@ a.add_form_button:hover {
 	background-color: #D0D0D0;
 }
 
-#register_form {
+#register_form_wrapper {
 	float: left;
 	width: 350px;
 }

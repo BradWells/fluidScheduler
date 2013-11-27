@@ -27,25 +27,12 @@ $(".cancel_message_button").click(
 
 $("#signin").click(
 	function() {
-		var username = String($("#username").val());
-		var password = String($("#password").val());
-
-		document.location.href = "workspace.html";
+		$("signin_form").submit();
 	});
 
 $("#register").click(
 	function() {
-		var email = String($("#email").val());
-		var username = String($("#username").val());
-		var password = String($("#password").val());
-		var re_password = String($("#re_password").val());
-
-		if(password != re_password) {
-			raise_error_message("The password does not match the re-typed password.");
-		}
-		else {
-			document.location.href = "workspace.html";
-		}
+		$("register_form").submit();
 	});
 
 $("#send_new_password").click(

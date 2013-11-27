@@ -8,9 +8,9 @@
 		</div>
 	</div>
 	<div id="signin_box">
-		<div id="signin_form">
-			<form action="" method="post" name="login">
-				{{form.hidden_tag()}}
+		<div id="signin_form_wrapper">
+			<form id="signin_form" action="" method="post" name="login">
+				{{loginform.hidden_tag()}}
 				<h3 class="form_title">Sign In</h3>
 				<table class="form_table">
 					<tr>
@@ -19,7 +19,7 @@
 					</tr>
 					<tr>
 						<td><span class="label">Password</span></td>
-						<td>{{loginform.password(id="password" class="text_input")}}</td>
+						<td>{{loginform.password(id="password", class="text_input")}}</td>
 					</tr>
 				</table>
 				<div class="form_actions">
@@ -31,26 +31,26 @@
 		<div id="form_divider">
 			<div id="divider"></div>
 		</div>
-		<div id="register_form">
-			<form action="" method="post" name="register">
-				{{form.hidden_tag()}}
+		<div id="register_form_wrapper">
+			<form id="register_form" action="" method="post" name="register">
+				{{registerform.hidden_tag()}}
 				<h3 class="form_title">Register</h3>
 				<table class="form_table">
 					<tr>
 						<td><span class="label">E-mail Address</span></td>
-						<td>{{registerform.email(id="email" class="text_input")}}</td>
+						<td>{{registerform.email(id="email", class="text_input")}}</td>
 					</tr>
 					<tr>
 						<td><span class="label">Username</span></td>
-						<td>{{registerform.username(id="username" class="text_input")}}</td>
+						<td>{{registerform.username(id="username", class="text_input")}}</td>
 					</tr>
 					<tr>
 						<td><span class="label">Password</span></td>
-						<td>{{registerform.password(id="password" class="text_input")}}</td>
+						<td>{{registerform.password(id="password", class="text_input")}}</td>
 					</tr>
 					<tr>
 						<td><span class="label">Re-type Password</span></td>
-						<td>{{registerform.confirm_password(id="re_password" class="text_input")}}</td>
+						<td>{{registerform.confirmpassword(id="re_password", class="text_input")}}</td>
 					</tr>
 				</table>
 				<div class="form_actions">
