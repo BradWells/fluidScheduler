@@ -1,14 +1,10 @@
 <{% extends "base.html" %}
 {% block content %}
 	<div class="box_spacer">
-		<div class="box_spacer"></div>
-		<div class="message_box">
-			<a href="javascript:;" class="cancel_message_button">x</a>
-			<span class="message"></span>
-		</div>
+		{{message_box|safe}}
 	</div>
 	<div id="forgot_box">
-		<form id="forgot_form" action="/send_new_password" method="post">
+		<form id="forgot_form" action="/forgot" method="post">
 			{{forgot_form.hidden_tag()}}
 			<table class="form_table">
 				<tr>
