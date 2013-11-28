@@ -1,8 +1,8 @@
-from flask import render_template, redirect, url_for, g, request, flash, get_flashed_messages
-from app import app
-from forms import LoginForm, RegisterForm, ForgotForm, SettingsForm
+from app import app, db, lm
+from flask import flash, g, get_flashed_messages, redirect, render_template, request, url_for
+from flask.ext.login import current_user, login_required, login_user, logout_user
+from forms import ForgotForm, LoginForm, RegisterForm, SettingsForm
 from models import User
-from flask.ext.login import login_user, logout_user, current_user, login_required
 
 @app.route('/')
 @app.route('/index')
@@ -15,15 +15,30 @@ def before_request():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+	message_box = ""
 	login_form = LoginForm(prefix="login")
 	register_form = RegisterForm(prefix="register")
 	if login_form.validate_on_submit():
-		print "boop"
-		return redirect(url_for('workspace'))
+		user = User.query.filter_by(username = request.form['login-username']).first()
+		if user == None or user.password != request.form['login-password']:
+			message_box = message_box_html("Bad credentials.", error=True)
+		else:
+			login_user(user)
+			return redirect(url_for('workspace'))
 	if register_form.validate_on_submit():
-		print "yoloswag"
-		return redirect(url_for('workspace'))
-	message_box = get_message_box([login_form, register_form])
+		user = User.query.filter_by(username = request.form['username']).first()
+		if user != None:
+			message_box = message_box_html("Credentials are not available.", error=True)
+		else:
+			new_user = User()
+			new_user.username = request.form['register-username']
+			new_user.password = request.form['register-password']
+			new_user.email = request.form['register-email']
+			db.session.add(new_user)
+			db.session.commit()
+			message_box = message_box_html("Account successfully created.")
+	if not message_box:
+		message_box = get_message_box([login_form, register_form])
 	clear_errors([login_form, register_form])
 	return render_template(
 		'login.html', 
@@ -77,24 +92,45 @@ def settings():
 def get_message_box(forms):
 	flashed_messages = get_flashed_messages()
 	if flashed_messages:
-		return '<div class="box_spacer"></div>                                           \
-			<div class="message_box">                                                    \
-				<a href="javascript:;" class="cancel_message_button">x</a>               \
-				<span class="message">%s</span>                                          \
-			</div>' % flashed_message[0]
+		return message_box_html(flashed_message[0])
 	else:
+		err = ""
 		for form in forms:
+		# 	err += str(form.errors)	
+		# return message_box_html(err, error=True)
 			for field in form.errors:
 				if form.errors[field]:
-					messages = ""
-					for error in form.errors[field]:
-						messages += '<span class="message error_text">%s</span>' % error
-					return '<div class="box_spacer"></div>                               \
-						<div class="message_box error_box">                              \
-							<a href="javascript:;" class="cancel_message_button error_text">x</a> \
-							%s                                                           \
-						</div>' % messages
+					return message_box_html(form.errors[field], error=True)
 	return ""
+
+def message_box_html(message, error=False):
+	span = ""
+	if error:
+		if type(message) is list:
+			for m in message:
+				span += '<span class="message error_text">%s</span>' % m
+		else:
+			span = '<span class="message error_text">%s</span>' % message
+	else:
+		if type(message) is list:
+			for m in message:
+				span += '<span class="message">%s</span>' % m
+		else:
+			span = '<span class="message">%s</span>' % message
+
+
+	if error:
+		return '<div class="box_spacer"></div>                                 \
+		<div class="message_box error_box">                                    \
+		<a href="javascript:;" class="cancel_message_button error_text">x</a>  \
+			%s                                                                 \
+		</div>' % span
+	else:
+		return '<div class="box_spacer"></div>                                 \
+		<div class="message_box">                                              \
+		<a href="javascript:;" class="cancel_message_button">x</a>             \
+			%s                                                                 \
+		</div>' % span
 
 def clear_errors(forms):
 	for form in forms:
