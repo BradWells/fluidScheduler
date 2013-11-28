@@ -1,11 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 	<div class="box_spacer">
-		<div class="box_spacer"></div>
-		<div class="message_box">
-			<a href="javascript:;" class="cancel_message_button">x</a>
-			<span class="message"></span>
-		</div>
+		{{message_box|safe}}
 	</div>
 	<div id="signin_box">
 		<div id="signin_form_wrapper">
@@ -32,7 +28,7 @@
 			<div id="divider"></div>
 		</div>
 		<div id="register_form_wrapper">
-			<form id="register_form" action="/register" method="post">
+			<form id="register_form" action="/login" method="post">
 				{{register_form.hidden_tag()}}
 				<h3 class="form_title">Register</h3>
 				<table class="form_table">
