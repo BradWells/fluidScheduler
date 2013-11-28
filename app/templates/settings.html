@@ -1,4 +1,4 @@
-<{% extends "base.html" %}
+{% extends "base.html" %}
 {% block content %}
 	<div class="box_spacer">
 		<div class="box_spacer"></div>
@@ -22,6 +22,10 @@
 				<tr>
 					<td><span class="label">New Password</span></td>
 					<td>{{settings_form.password(id="password", class="text_input")}}</td>
+				</tr>
+				<tr>
+					<td><span class="label">Confirm Password</span></td>
+					<td>{{settings_form.confirm_password(id="re_password", class="text_input")}}</td>
 				</tr>
 				<tr><td colspan="2"><hr /></td></tr>
 				<tr>
