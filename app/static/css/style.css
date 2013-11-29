@@ -173,10 +173,10 @@ p {
 }
 
 .slide_box {
-	background-color: #FFFFF5;
+	background-color: #FFFFEC;
 	border: 1px;
 	border-style: solid;
-	border-color: #F2F2F2;
+	border-color: #DEDEDE;
 
 	box-shadow: 0px 0px 3px 3px #E0E0E0;
  	-webkit-box-shadow: 0px 0px 3px 3px #E0E0E0;
@@ -209,7 +209,7 @@ p {
 	margin: 10px;
 
 	overflow-y: scroll;
-	background-color: #F2F2F2;
+	background-color: #DEDEDE;
 	border-radius: 5px;
 	border: 1px;
 	border-style: solid;
@@ -407,10 +407,10 @@ p {
 	margin-bottom: auto;
 
 	padding: 10px;
-	background-color: #FFFFF5;
+	background-color: #FFFFEC;
 	border: 1px;
 	border-style: solid;
-	border-color: #F2F2F2;
+	border-color: #DEDEDE;
 	border-radius: 5px;
 	text-align: center;
 }
@@ -480,10 +480,10 @@ p {
 	margin-bottom: auto;
 
 	padding: 10px;
-	background-color: #FFFFF5;
+	background-color: #FFFFEC;
 	border: 1px;
 	border-style: solid;
-	border-color: #F2F2F2;
+	border-color: #DEDEDE;
 	border-radius: 5px;
 	text-align: center;
 }
@@ -500,10 +500,10 @@ p {
 	margin-bottom: auto;
 
 	padding: 10px;
-	background-color: #FFFFF5;
+	background-color: #FFFFEC;
 	border: 1px;
 	border-style: solid;
-	border-color: #F2F2F2;
+	border-color: #DEDEDE;
 	border-radius: 5px;
 	text-align: center;
 }

@@ -57,12 +57,6 @@
         // draw the nodes & save their bounds for edge drawing
         nodeBoxes = {}
 
-        var eventImageObj = new Image();
-        eventImageObj.src = 'http://162.243.43.130/img/glyphicons/glyphicons_012_heart.png';
-
-        var contactImageObj = new Image();
-        contactImageObj.src = 'http://162.243.43.130/img/glyphicons/glyphicons_003_user.png';
-
         particleSystem.eachNode(function(node, pt){
           // node: {mass:#, p:{x,y}, name:"", data:{}}
           // pt:   {x:#, y:#}  node position in screen coords
@@ -100,11 +94,19 @@
           }else if(node.data.shape=='event_blob_image'){
             //This is for events with an image attached to them
               gfx.rect(pt.x-w/2, pt.y-10, w, h, 4, {fill:ctx.fillStyle});
-              ctx.drawImage(eventImageObj, pt.x-eventImageObj.width/2, pt.y-eventImageObj.height/2+20);
+              if(node.data.image) {
+                var nodeImage = new Image();
+                nodeImage.src = node.data.image;
+                ctx.drawImage(nodeImage, pt.x-nodeImage.width/2, pt.y-nodeImage.height/2+20);
+              }
               nodeBoxes[node.name] = [pt.x-w/2, pt.y-11, w, h]
           }else if(node.data.shape=='contact_blob_image'){
               gfx.rect(pt.x-w/2, pt.y-10, w, h, 4, {fill:ctx.fillStyle});
-              ctx.drawImage(contactImageObj, pt.x-contactImageObj.width/2, pt.y-contactImageObj.height/2+20);
+              if(node.data.image) {
+                var nodeImage = new Image();
+                nodeImage.src = node.data.image;
+                ctx.drawImage(nodeImage, pt.x-nodeImage.width/2, pt.y-nodeImage.height/2+20);
+              }
               nodeBoxes[node.name] = [pt.x-w/2, pt.y-11, w, h]
           }else{
             gfx.rect(pt.x-w/2, pt.y-10, w,20, 4, {fill:ctx.fillStyle})
@@ -258,9 +260,12 @@
             particleSystem.eachNode(function(node, pt){
               if(node.name != dragged.node.name && overlap(nodeBoxes[node.name], nodeBoxes[dragged.node.name])){
                 if(particleSystem.getEdges(node, dragged.node).length == 0 && particleSystem.getEdges(dragged.node, node).length == 0 ){
-                  var r=confirm("Do you want to link " + node.data.label + " to " + dragged.node.data.label + "?");
-                  if (r==true){
-                    linkNodes(node, dragged.node);
+                  if(node.data.type == 'event' && dragged.node.data.type == 'contact' ||
+                     node.data.type == 'contact' && dragged.node.data.type == 'event') {
+                    var r=confirm("Do you want to link " + node.data.label + " to " + dragged.node.data.label + "?");
+                    if (r==true){
+                      linkNodes(node, dragged.node);
+                    }
                   }
                 }
                 else{
