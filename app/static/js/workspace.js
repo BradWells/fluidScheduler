@@ -174,23 +174,79 @@ sys.graft(data);
  *
  */
 
- var foo = 1;
+var foo = 1;
 
- var open_box = function(button, buttonText, box, content) {
- 	button.text(buttonText);
+var add_event = function(name, image, start, end, attending) {
+	var label = '';
+	if(name) {
+		label = name;
+	}
+	image_source = '';
+	if(image) {
+		image_source = image;
+	}
+	var details = new Array();
+	if(start) {
+		details.push("Start: " + start);
+	}
+	if(end) {
+		details.push("End: " + end);
+	}
+	if(attending) {
+		details.push("Attending: " + attending);
+	}
+	sys.addNode(
+		String(foo++),
+		{
+			'color': 'green',
+			'shape': 'contact_blob_image',
+			'label': label,
+			'image': image_source,
+			'text' : details,
+			'type' : 'event'
+		});
+}
+
+var add_contact = function(name, image, email) {
+	var label = '';
+	if(name) {
+		label = name;
+	}
+	image_source = '';
+	if(image) {
+		image_source = image;
+	}
+	var details = new Array();
+	if(email) {
+		details.push("Email: " + email);
+	}
+	sys.addNode(
+		String(foo++),
+		{
+			'color': 'orange',
+			'shape': 'contact_blob_image',
+			'label': label,
+			'image': image_source,
+			'text' : details,
+			'type' : 'contact'
+		});
+}
+
+var open_box = function(button, buttonText, box, content) {
+	button.text(buttonText);
 	box.animate({'bottom': '19px'}, 1000);
 	box.removeClass('hidden');
-    box.empty();
-    box.html(content);
+	box.empty();
+	box.html(content);
 
- }
+}
 
- var close_box = function(button, buttonText, box) {
+var close_box = function(button, buttonText, box) {
 	button.text(buttonText);
 	box.animate({'bottom': '-351px'}, 1000);
 	box.addClass('hidden');
 	box.empty();
- }
+}
 
 $("#add_event").click(
 	function() {
@@ -210,20 +266,12 @@ $("#add_event").click(
 			$('#format').buttonset();
 			$('#createevent').click(
 				function() {
-
-					var details = new Array();
-					details.push("Start: " + $('#start').val());
-					details.push("End: " + $('#end').val());
-					details.push("Attending: " + $('#numAttending option:selected').text());
-					sys.addNode(
-						String(foo++),
-						{
-							'color':'green',
-							'shape':'event_blob_image',
-							'label': String($('#eventname').val()),
-							'text' : details,
-							'type' : 'event'
-						});
+					add_event(
+						String($('#eventname').val()), 
+						'http://162.243.43.130/img/glyphicons/glyphicons_012_heart.png', 
+						String($('#start').val()),
+						String($('#end').val()),
+						String($('#numAttending option:selected').text()));
 					close_box(that, "Add Event", box);
 				});
 		}
@@ -246,17 +294,10 @@ $("#add_contact").click(
 			$('#accordion').accordion({ collapsible: "true", animate: 0 });
 			$('#createcontact').click(
 				function() {
-					var details = new Array();
-					details.push("Email: " + $('#contactemail').val());
-					sys.addNode(
-						String(foo++),
-						{
-							'color':'orange',
-							'shape':'contact_blob_image',
-							'label': String($('#contactname').val()),
-							'text' : details,
-							'type' : 'contact'
-						});
+					add_contact(
+						String($('#contactname').val()),
+						'http://162.243.43.130/img/glyphicons/glyphicons_003_user.png',
+						String($('#contactemail').val()));
 					close_box(that, "Add Contact", box);
 				});
 		}
