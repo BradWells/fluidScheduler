@@ -80,7 +80,14 @@ p {
 	height: 20px;
 }
 
-a.button {
+.link_button {
+    border: none;
+    display: inline;
+    font: inherit;
+    outline: none;
+    outline-offset: 0;
+    cursor: pointer;
+
 	padding: 6px;
 	margin: 2px;
 	color: white;
@@ -97,11 +104,11 @@ a.button {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
 }
 
-a.button:hover {
+.link_button:hover{
 	background: #A02B2C;
 }
 
-a.add_form_button {
+.add_form_button {
 	padding: 6px;
 	margin: 10px;
 	color: white;
@@ -118,7 +125,7 @@ a.add_form_button {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
 }
 
-a.add_form_button:hover {
+.add_form_button:hover {
 	background: #A02B2C;
 }
 
@@ -139,7 +146,7 @@ a.add_form_button:hover {
 
 .content {
 	position: absolute;
-	top: 60px;
+	top: 0px;
 	bottom: 45px;
 }
 
@@ -353,7 +360,6 @@ a.add_form_button:hover {
 }
 
 .message_box {
-	display: none;
 	position: relative;
 
 	width: 450px;
@@ -409,7 +415,7 @@ a.add_form_button:hover {
 	text-align: center;
 }
 
-#signin_form {
+#signin_form_wrapper {
 	float: left;
 	width: 300px;
 }
@@ -431,7 +437,7 @@ a.add_form_button:hover {
 	background-color: #D0D0D0;
 }
 
-#register_form {
+#register_form_wrapper {
 	float: left;
 	width: 350px;
 }
@@ -487,7 +493,7 @@ a.add_form_button:hover {
 
 #settings_box {
 	width: 400px;
-	height: 170px;
+	height: 200px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: auto;

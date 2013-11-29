@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+	<div id="graph" class="content">
+		<canvas id="workspace" width="1920" height="960"></canvas>
+	</div>
+
+	<div id="public_events_feed" class="content events_feed">
+		<div id="public_pane" class="pane slide_box">
+			<h2 class="events_feed_title">Public Events Feed</h2>
+			<div class="events_feed_scrollarea">
+				asdf
+			</div>
+			<div class="events_feed_filter">
+				<!--<table style="background-color:blue;">
+					<tr style="background-color:white;">
+						<td class="filter_label">Filter</td>
+						<td><input type="text" id="public_text_filter" /></td>
+						<td></td>
+					</tr>
+					<tr style="background-color:red;">
+						<td class="filter_label">From</td>
+						<td>Datebox</td>
+						<td><input type="checkbox" id="public_display_repeat" /></td>
+					</tr>
+					<tr style="background-color:yellow;">
+						<td class="filter_label">To</td>
+						<td>Datebox</td>
+						<td><button id="public_search">Search</button></td>
+					</tr>
+				</table>-->
+			</div>
+		</div>
+		<div class="pane_button">
+			<a href="javascript:;" id="public_events_button">
+				<img src="../static/img/glyphicons/glyphicons_224_chevron-left.png" />
+			</a>
+		</div>
+	</div>
+
+	<div id="attending_events_feed" class="content events_feed">
+		<div class="pane_button">
+			<a href="javascript:;" id="attending_events_button">
+				<img src="../static/img/glyphicons/glyphicons_223_chevron-right.png" />
+			</a>
+		</div>
+		<div id="attending_pane" class="pane slide_box">
+			<h2 class="events_feed_title">Attending Events Feed</h2>
+			<div class="events_feed_scrollarea">
+				jkl;
+			</div>
+			<div class="events_feed_filter">
+			</div>
+		</div>
+	</div>
+
+	<div id="add_event_form" class="form_box slide_box hidden"></div>
+
+	<div id="add_contact_form" class="form_box slide_box hidden"></div>
+
+	<div id="footer" class="static_bar align_bottom">
+		<span id="zoom">
+			<span id="icon_zoomout">
+				<a href="javascript:;" id="zoomout">-</a>
+			</span>
+			<div id="slider"></div>
+			<span id="icon_zoomin">
+				<a href="javascript:;" id="zoomin">+</a>
+			</span>
+		</span>
+		<span id="buttons" class="right">
+			<a href="javascript:;" id="add_event" class="link_button">Add Event</a>
+			<a href="javascript:;" id="add_contact" class="link_button">Add Contact</a>
+		</span>
+	</div>
+{% endblock %}
+{% block scripts %}
+	<!--Arborjs: http://arborjs.org-->
+	<script language="javascript" type="text/javascript" src="../static/js/res/arbor.js"></script>
+	<script language="javascript" type="text/javascript" src="../static/js/res/arbor-graphics.js"></script>
+
+	<script language="javascript" type="text/javascript" src="../static/js/renderer.js"></script>
+	<script language="javascript" type="text/javascript" src="../static/js/workspace.js"></script>
+{% endblock %}

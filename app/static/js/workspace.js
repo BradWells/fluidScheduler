@@ -20,7 +20,7 @@ var add_event_content = '<form>                                                 
 	'			<tr>                                                                                        ' +
 	'				<td>Number attending:</td>                                                              ' +
 	'				<td>	                                                                                ' +
-	'					<select>                                                                            ' +
+	'					<select id="numAttending">                                                                            ' +
 	'						<option>0-24</option>                                                           ' +
 	'						<option>25-49</option>                                                          ' +
 	'						<option>50-74</option>                                                          ' +
@@ -127,7 +127,7 @@ var testNode = sys.addNode(
 		'color':'red',
 		'shape':'dot',
 		'label':'Test'
-	});
+ 	});
 var testNode2 = sys.addNode(
 	'Test2',
 	{
@@ -136,6 +136,22 @@ var testNode2 = sys.addNode(
 		'label':'Test2'
 	});
 sys.addEdge(testNode, testNode2);
+
+var strings = new Array();
+strings.push("Short Text");
+strings.push("THIS IS A REALLY LONG MESSAGE");
+strings.push("ok done");
+
+var testNodeImage = sys.addNode(
+	'TestImage',
+	{
+		'color':'blue',
+		'shape':'event_blob_image',
+		'label':'TestImage',
+		'image':'http://162.243.43.130/img/glyphicons/glyphicons_012_heart.png',
+		'text': strings
+	});
+sys.addEdge(testNode, testNodeImage);
 
 var data = {
 	nodes:{
@@ -194,12 +210,19 @@ $("#add_event").click(
 			$('#format').buttonset();
 			$('#createevent').click(
 				function() {
+
+					var details = new Array();
+					details.push("Start: " + $('#start').val());
+					details.push("End: " + $('#end').val());
+					details.push("Attending: " + $('#numAttending option:selected').text());
 					sys.addNode(
 						String(foo++),
 						{
 							'color':'green',
-							'shape':'dot',
-							'label': String($('#eventname').val())
+							'shape':'event_blob_image',
+							'label': String($('#eventname').val()),
+							'text' : details,
+							'type' : 'event'
 						});
 					close_box(that, "Add Event", box);
 				});
@@ -223,12 +246,16 @@ $("#add_contact").click(
 			$('#accordion').accordion({ collapsible: "true", animate: 0 });
 			$('#createcontact').click(
 				function() {
+					var details = new Array();
+					details.push("Email: " + $('#contactemail').val());
 					sys.addNode(
 						String(foo++),
 						{
 							'color':'orange',
-							'shape':'square',
-							'label': String($('#contactname').val())
+							'shape':'contact_blob_image',
+							'label': String($('#contactname').val()),
+							'text' : details,
+							'type' : 'contact'
 						});
 					close_box(that, "Add Contact", box);
 				});
@@ -302,14 +329,14 @@ $("#public_events_button").click(
 			pane.animate({'left': '-2px'}, 1000);
 			pane.removeClass('hidden');
 			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
+			$(this).append('<img src="../static/img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 		else {
 			// hide
 			pane.animate({'left': '-402px'}, 1000);
 			pane.addClass('hidden');
 			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
+			$(this).append('<img src="../static/img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
 	});
 
@@ -321,13 +348,13 @@ $("#attending_events_button").click(
 			pane.animate({'right': '-2px'}, 1000);
 			pane.removeClass('hidden');
 			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_223_chevron-right.png" />');
+			$(this).append('<img src="../static/img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
 		else {
 			// hide
 			pane.animate({'right': '-402px'}, 1000);
 			pane.addClass('hidden');
 			$(this).empty();
-			$(this).append('<img src="img/glyphicons/glyphicons_224_chevron-left.png" />');
+			$(this).append('<img src="../static/img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 	});

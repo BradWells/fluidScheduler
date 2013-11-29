@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="box_spacer">
+		{{message_box|safe}}
+	</div>
+	<div id="settings_box">
+		<form id="settings_form" action="/settings" method="post">
+			{{settings_form.hidden_tag()}}
+			<table class="form_table">
+				<tr>
+					<td><span class="label">New E-mail Address</span></td>
+					<td>{{settings_form.email(id="email", class="text_input")}}</td>
+				</tr>
+				<tr>
+					<td><span class="label">New Username</span></td>
+					<td>{{settings_form.username(id="username", class="text_input")}}</td>
+				</tr>
+				<tr>
+					<td><span class="label">New Password</span></td>
+					<td>{{settings_form.password(id="password", class="text_input")}}</td>
+				</tr>
+				<tr>
+					<td><span class="label">Confirm Password</span></td>
+					<td>{{settings_form.confirm_password(id="re_password", class="text_input")}}</td>
+				</tr>
+				<tr><td colspan="2"><hr /></td></tr>
+				<tr>
+					<td><span class="label">Old Password</span></td>
+					<td>{{settings_form.old_password(id="old_password", class="text_input")}}</td>
+				</tr>
+			</table>
+			<div class="form_actions">
+				<a href="/workspace" class="link form_link">Return to workspace</a>
+				<input type="submit" class="link_button form_button" name="submit_button" value="Update">
+			</div>
+		</form>
+	</div>
+{% endblock %}
+{% block scripts %}
+	<script language="javascript" type="text/javascript" src="../static/js/account.js"></script>
+{% endblock %}

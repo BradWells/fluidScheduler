@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="box_spacer">
+		{{message_box|safe}}
+	</div>
+	<div id="signin_box">
+		<div id="signin_form_wrapper">
+			<form id="signin_form" action="/login" method="post">
+				{{login_form.hidden_tag()}}
+				<h3 class="form_title">Sign In</h3>
+				<table class="form_table">
+					<tr>
+						<td><span class="label">Username</span></td>
+						<td>{{login_form.username(id="username", class="text_input")}}</td>
+					</tr>
+					<tr>
+						<td><span class="label">Password</span></td>
+						<td>{{login_form.password(id="password", class="text_input")}}</td>
+					</tr>
+				</table>
+				<div class="form_actions">
+					<a href="/forgot" class="link form_link">Forgot your password?</a>
+					<input type="submit" class="link_button form_button" name="submit_button" value="Login">
+				</div>
+			</form>
+		</div>
+		<div id="form_divider">
+			<div id="divider"></div>
+		</div>
+		<div id="register_form_wrapper">
+			<form id="register_form" action="/login" method="post">
+				{{register_form.hidden_tag()}}
+				<h3 class="form_title">Register</h3>
+				<table class="form_table">
+					<tr>
+						<td><span class="label">E-mail Address</span></td>
+						<td>{{register_form.email(id="email", class="text_input")}}</td>
+					</tr>
+					<tr>
+						<td><span class="label">Username</span></td>
+						<td>{{register_form.username(id="username", class="text_input")}}</td>
+					</tr>
+					<tr>
+						<td><span class="label">Password</span></td>
+						<td>{{register_form.password(id="password", class="text_input")}}</td>
+					</tr>
+					<tr>
+						<td><span class="label">Re-type Password</span></td>
+						<td>{{register_form.confirm_password(id="re_password", class="text_input")}}</td>
+					</tr>
+				</table>
+				<div class="form_actions">
+					<input type="submit" class="link_button form_button" name="submit_button" value="Register">
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+{% block scripts %}
+	<script language="javascript" type="text/javascript" src="../static/js/account.js"></script>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+	<div id="topper" class="info">
+		<a href="workspace.html" id="back_link">
+			<img src="../static/img/glyphicons/glyphicons_216_circle_arrow_left.png" class="icon_image"> 
+			<span class="topper_text">Return to workspace</span>
+		</a>
+		<div id="share">
+			<img src="../static/img/glyphicons/glyphicons_043_group.png" class="icon_image_long">
+			<span class="topper_text">Share This Event
+			<input type="text" id="share_link" class="text_input" value="www.wololo.com" readonly></span>
+		</div>
+	</div>
+
+	<div id="upper">
+		<div id="event_imgage_wrapper" class="info">
+			<img src="../static/img/buildings/none.png" id="event_image">
+		</div>
+
+		<div id="event_text" class="info">
+			<p class="event_text_title">My Event!!!</p>
+			<p class="event_text_info">Hosted by Wilfred Benchstopper</p>
+			<p class="event_text_info">12:00 am - 11:59 pm</p>
+			<p class="event_text_info">August 23rd, 2013</p>
+			<p class="event_text_info">Central Campus</p>
+		</div>
+
+		<div id="attender" class="info">
+			<a href="javascript:;" id="attending" class="button">Attending</a>
+			<a href="javascript:;" id="edit_event" class="button">Edit</a>
+		</div>
+	</div>
+
+	<div id="grid" class="info">
+		<div class="gridster ready">
+			<ul style="height: 480px; position: relative;">
+				<li data-row="1" data-col="1" data-sizex="1" data-sizey="1" class="gs_w"></li>
+				<li data-row="2" data-col="1" data-sizex="1" data-sizey="1" class="gs_w"></li>
+				<li data-row="3" data-col="1" data-sizex="1" data-sizey="1" class="gs_w"></li>
+
+				<li data-row="1" data-col="2" data-sizex="2" data-sizey="1" class="gs_w"></li>
+				<li data-row="2" data-col="2" data-sizex="2" data-sizey="2" class="gs_w"></li>
+
+				<li data-row="1" data-col="4" data-sizex="1" data-sizey="1" class="gs_w"></li>
+				<li data-row="2" data-col="4" data-sizex="2" data-sizey="1" class="gs_w"></li>
+				<li data-row="3" data-col="4" data-sizex="1" data-sizey="1" class="gs_w"></li>
+
+				<li data-row="1" data-col="5" data-sizex="1" data-sizey="1" class="gs_w"></li>
+				<li data-row="3" data-col="5" data-sizex="1" data-sizey="1" class="gs_w"></li>
+
+				<li data-row="1" data-col="6" data-sizex="1" data-sizey="1" class="gs_w"></li>
+				<li data-row="2" data-col="6" data-sizex="1" data-sizey="2" class="gs_w"></li>
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+{% block scripts %}
+	<script language="javascript" type="text/javascript" src="../static/js/event.js"></script>
+{% endblock %}
