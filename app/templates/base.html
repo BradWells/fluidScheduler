@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% if title %}
+			<title>ISU Event Center - {{title}}</title>
+		{% else %}
+			<title>ISU Event Center</title>
+		{% endif %}
+
+		<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+		<!-- Jquery http://jquery.com -->
+		<script language="javascript" type="text/javascript" src="../static/js/res/jquery.min.js"></script>
+
+		<!-- Jquery UI http://jqueryui.com -->
+		<script language="javascript" type="text/javascript" src="../static/js/res/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../static/css/res/jquery-ui.min.css">
+
+		<!-- Jquery UI Timepicker -->
+		<script language="javascript" type="text/javascript" src="../static/js/res/jquery-ui-timepicker-addon.js"></script>
+		<link rel="stylesheet" type="text/css" href="../static/css/res/jquery-ui-timepicker-addon.css"/>
+	</head>
+
+	<body>
+		<div id="header" class="static_bar align_top">
+			<span id="title">Event Center</span>
+			{% if g.user.is_authenticated() %}
+				<span id="nav_icons" class="right">
+					<a href="/logout" id="signout" class="icon">
+						<span class="icon_text">Sign Out</span>
+						<img src="../static/img/glyphicons/glyphicons_388_exit.png" class="icon_image">
+					</a>
+					<a href="/settings" id="settings" class="icon">
+						<span class="icon_text">Account Settings</span>
+						<img src="../static/img/glyphicons/glyphicons_136_cogwheel.png" class="icon_image">
+					</a>
+				</span>
+			{% endif %}
+		</div>
+
+		<div class="bottomless_content">
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+
+	{% block scripts %}{% endblock %}
+</html>
