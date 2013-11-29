@@ -55,7 +55,14 @@
         particleSystem.screenSize($(canvas).get(0).width, $(canvas).get(0).height)
 
         // draw the nodes & save their bounds for edge drawing
-        var nodeBoxes = {}
+        nodeBoxes = {}
+
+        var eventImageObj = new Image();
+        eventImageObj.src = 'http://162.243.43.130/img/glyphicons/glyphicons_012_heart.png';
+
+        var contactImageObj = new Image();
+        contactImageObj.src = 'http://162.243.43.130/img/glyphicons/glyphicons_003_user.png';
+
         particleSystem.eachNode(function(node, pt){
           // node: {mass:#, p:{x,y}, name:"", data:{}}
           // pt:   {x:#, y:#}  node position in screen coords
@@ -63,7 +70,18 @@
           // determine the box size and round off the coords if we'll be 
           // drawing a text label (awful alignment jitter otherwise...)
           var label = node.data.label||""
+          var text = node.data.text || new Array();
+
           var w = ctx.measureText(""+label).width + 10
+          //Roughly estimating image:20 + text:20 + margin:10 = 50
+          var h = 50;
+          for(var i = 0; i < text.length; i++){
+            w = Math.max(w, ctx.measureText("" + text[i]).width+10);
+            h += 20;
+          }
+          //Minimum
+          var w = Math.max(w, 30);
+
           if (!(""+label).match(/^[ \t]*$/)){
             pt.x = Math.floor(pt.x)
             pt.y = Math.floor(pt.y)
@@ -79,6 +97,15 @@
           if (node.data.shape=='dot'){
             gfx.oval(pt.x-w/2, pt.y-w/2, w,w, {fill:ctx.fillStyle})
             nodeBoxes[node.name] = [pt.x-w/2, pt.y-w/2, w,w]
+          }else if(node.data.shape=='event_blob_image'){
+            //This is for events with an image attached to them
+              gfx.rect(pt.x-w/2, pt.y-10, w, h, 4, {fill:ctx.fillStyle});
+              ctx.drawImage(eventImageObj, pt.x-eventImageObj.width/2, pt.y-eventImageObj.height/2+20);
+              nodeBoxes[node.name] = [pt.x-w/2, pt.y-11, w, h]
+          }else if(node.data.shape=='contact_blob_image'){
+              gfx.rect(pt.x-w/2, pt.y-10, w, h, 4, {fill:ctx.fillStyle});
+              ctx.drawImage(contactImageObj, pt.x-contactImageObj.width/2, pt.y-contactImageObj.height/2+20);
+              nodeBoxes[node.name] = [pt.x-w/2, pt.y-11, w, h]
           }else{
             gfx.rect(pt.x-w/2, pt.y-10, w,20, 4, {fill:ctx.fillStyle})
             nodeBoxes[node.name] = [pt.x-w/2, pt.y-11, w, 22]
@@ -91,9 +118,20 @@
             ctx.fillStyle = "white"
             if (node.data.color=='none') ctx.fillStyle = '#333333'
             ctx.fillText(label||"", pt.x, pt.y+4)
-            ctx.fillText(label||"", pt.x, pt.y+4)
           }
-        })    			
+          if (text){
+            ctx.font = "12px Helvetica"
+            ctx.textAlign = "center"
+            ctx.fillStyle = "white"
+            if (node.data.color=='none') ctx.fillStyle = '#333333'
+            //This is the reletive distance from the top.
+            var position = 50;
+            for(var i=0; i<text.length; i++){
+              ctx.fillText(text[i], pt.x, pt.y+position)
+              position += 20;
+            }
+          }
+        })          
 
 
         // draw the edges
@@ -191,6 +229,22 @@
             if (dragged===null || dragged.node===undefined) return
             if (dragged.node !== null) dragged.node.fixed = false
             dragged.node.tempMass = 50
+            particleSystem.eachNode(function(node, pt){
+              if(node.name != dragged.node.name && overlap(nodeBoxes[node.name], nodeBoxes[dragged.node.name])){
+                if(particleSystem.getEdges(node, dragged.node).length == 0 && particleSystem.getEdges(dragged.node, node).length == 0 ){
+                  var r=confirm("Do you want to link " + node.data.label + " to " + dragged.node.data.label + "?");
+                  if (r==true){
+                    linkNodes(node, dragged.node);
+                  }
+                }
+                else{
+                  var r=confirm("Do you want to unlink " + node.data.label + " from " + dragged.node.data.label + "?");
+                  if (r==true){
+                    unlinkNodes(node, dragged.node)
+                  }
+                }
+              }
+            })
             dragged = null
             selected = null
             $(canvas).unbind('mousemove', handler.dragged)
@@ -203,6 +257,49 @@
 
       }
 
+    }
+
+    // helpers for figuring out if nodes overlap
+    var overlap = function(boxTuple1, boxTuple2){
+      var p3_1 = {x:boxTuple1[0], y:boxTuple1[1]},
+          w_1 = boxTuple1[2],
+          h_1 = boxTuple1[3]
+
+      var tl_1 = {x: p3_1.x, y: p3_1.y};
+      var tr_1 = {x: p3_1.x + w_1, y: p3_1.y};
+      var bl_1 = {x: p3_1.x, y: p3_1.y + h_1};
+      var br_1 = {x: p3_1.x + w_1, y: p3_1.y + h_1};
+      var mid_1 ={x: (tl_1.x + br_1.x)/2, y: (tl_1.y + br_1.y)/2}
+
+      //These are the points to check, simplified to edge points and middle.
+      //If more accuracy is needed to check overlap, use a different system than checking these points.
+      var points_1 = [tl_1, tr_1, bl_1, br_1, mid_1];
+
+      var p3_2 = {x:boxTuple2[0], y:boxTuple2[1]},
+          w_2 = boxTuple2[2],
+          h_2 = boxTuple2[3]
+
+      var tl_2 = {x: p3_2.x, y: p3_2.y};
+      var tr_2 = {x: p3_2.x + w_2, y: p3_2.y};
+      var bl_2 = {x: p3_2.x, y: p3_2.y + h_2};
+      var br_2 = {x: p3_2.x + w_2, y: p3_2.y + h_2};
+      var mid_2 ={x: (tl_2.x + br_2.x)/2, y: (tl_2.y + br_2.y)/2};
+
+      var points_2 = [tl_2, tr_2, bl_2, br_2, mid_2];
+
+
+      for(var i=0; i<points_1.length; i++){
+        //alert("" + points_1[i].x + ">" + tl_2.x + "&&" + points_1[i].x + "<" + br_2.x + "&&" + points_1[i].y +"<"+ br_2.y +"&&"+ points_1[i].y +">"+ tl_2.y)
+        if(points_1[i].x > tl_2.x && points_1[i].x < br_2.x && points_1[i].y < br_2.y && points_1[i].y > tl_2.y){
+          return true;
+        }
+      }
+      for(var i=0; i<points_2.length; i++){
+        if(points_2[i].x > tl_1.x && points_2[i].x < br_1.x && points_2[i].y < br_1.y && points_2[i].y > tl_1.y){
+          return true;
+        }
+      }
+      return false;
     }
 
     // helpers for figuring out where to draw arrows (thanks springy.js)
@@ -233,6 +330,23 @@
             intersect_line_line(p1, p2, br, bl) ||
             intersect_line_line(p1, p2, bl, tl) ||
             false
+    }
+
+    var linkNodes = function(node1, node2){
+      particleSystem.addEdge(node1, node2);
+      //TODO Nongraphical updates
+    }
+
+    var unlinkNodes = function(node1, node2){
+      var edgesTo = particleSystem.getEdges(node1, node2);
+      for(var i=0; i<edgesTo.length; i++){
+        particleSystem.pruneEdge(edgesTo[i]);
+      }
+      var edgesFrom = particleSystem.getEdges(node1, node2);
+      for(var i=0; i<edgesFrom.length; i++){
+        particleSystem.pruneEdge(edgesFrom[i]);
+      }
+      //TODO Nongraphical updates
     }
 
     return that
