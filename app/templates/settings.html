@@ -29,10 +29,10 @@
 					<td>{{settings_form.old_password(id="old_password", class="text_input")}}</td>
 				</tr>
 			</table>
-			<p>
-				<a href="/workspace" class="button">Cancel</a>
-				<a href="javascript:;" id="submit_settings" class="button">Submit</a>
-			</p>
+			<div class="form_actions">
+				<a href="/workspace" class="link form_link">Return to workspace</a>
+				<input type="submit" class="link_button form_button" name="submit_button" value="Update">
+			</div>
 		</form>
 	</div>
 {% endblock %}

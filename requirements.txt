@@ -3,3 +3,4 @@ flask-sqlalchemy
 flask-login
 sqlalchemy-migrate
 flask-wtf
+Flask-Mail

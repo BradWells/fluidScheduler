@@ -12,10 +12,10 @@
 					<td>{{forgot_form.email(id="email", class="text_input")}}</td>
 				</tr>
 			</table>
-			<p>
-				<a href="/index" class="button">Cancel</a>
-				<a href="javascript:;" id="send_new_password" class="button">Send Me a New Password</a>
-			</p>
+			<div class="form_actions">
+				<a href="/index" class="link form_link">Return to login</a>
+				<input type="submit" class="link_button form_button" name="submit_button" value="Send Email">
+			</div>
 		</form>
 	</div>
 {% endblock %}
