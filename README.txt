@@ -43,7 +43,7 @@
 				source cs319/bin/activate
 			WINDOWS
 				cd ~\virtualenvs
-				cs319\bin\activate
+				cs319\Scripts\activate
 
 		6. Navigate to your local project.  
 			OSX / LINUX
