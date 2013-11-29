@@ -370,7 +370,7 @@
       for(var i=0; i<edgesTo.length; i++){
         particleSystem.pruneEdge(edgesTo[i]);
       }
-      var edgesFrom = particleSystem.getEdges(node1, node2);
+      var edgesFrom = particleSystem.getEdges(node2, node1);
       for(var i=0; i<edgesFrom.length; i++){
         particleSystem.pruneEdge(edgesFrom[i]);
       }
