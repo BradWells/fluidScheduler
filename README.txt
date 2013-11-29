@@ -8,7 +8,7 @@
 
 
 	First Time Setup
-		1. Install the latest version of Python.
+		1. Install the latest version of Python 2.x.
 			http://www.python.org/getit/
 
 		2. Install the latest version of pip.
@@ -48,14 +48,14 @@
 			WINDOWS
 				cd <project_path>
 
-		7. Update your python packages
+		7. Update your python packages (from your local project directory).
 			OSX / LINUX
 				pip install -r requirements.txt
 			WINDOWS
 				pip install -r requirements.txt
 
 
-	Running the Server
+	Running the Server (in your local project directory)
 		8. (optional) Reset the server databases.
 			OSX / LINUX
 				source clean.sh
