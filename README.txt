@@ -7,6 +7,9 @@
 	Some of these instructions will require administrative access.  On windows, the console must be started with administrative privilages.  On osx/linux, the command must be prefixed by 'sudo'.
 
 
+	You may need to modify your system PATH to make some commands available.
+
+
 	First Time Setup
 		1. Install the latest version of Python 2.x.
 			http://www.python.org/getit/
