@@ -115,7 +115,7 @@ def forgot():
 @app.route('/workspace')
 @login_required
 def workspace():
-	return render_template('workspace.html', today='10/10/2013', public_events=[], attending_events=[])
+	return render_template('workspace.html', public_events=[], attending_events=[], created_events=[], created_contacts=[])
 
 @app.route('/event')
 @login_required

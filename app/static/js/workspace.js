@@ -20,7 +20,7 @@ var add_event_content = '<form>                                                 
 	'			<tr>                                                                                        ' +
 	'				<td>Number attending:</td>                                                              ' +
 	'				<td>	                                                                                ' +
-	'					<select id="numAttending">                                                                            ' +
+	'					<select id="numAttending">                                                          ' +
 	'						<option>0-24</option>                                                           ' +
 	'						<option>25-49</option>                                                          ' +
 	'						<option>50-74</option>                                                          ' +
@@ -358,7 +358,7 @@ $("#slider").slider({
 
 /*
  *
- * Pane Controls
+ * Event Feed Panes
  *
  */
  
@@ -399,3 +399,220 @@ $("#attending_events_button").click(
 			$(this).append('<img src="../static/img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 	});
+
+function Event(name, start, end, date, place, image_src, repeat, key) {
+	this.name = name;
+	this.start = start;
+	this.end = end;
+	this.date = date;
+	this.place = place;
+	this.image_src = image_src;
+	this.key = key;
+}
+
+function EventsFeed(locator) {
+	var that = this;
+
+	this.locator = locator;
+	this.events = new Array();
+
+	// Converts datetime strings from "MM/DD/YYYY HH:MM"
+	this.datetime = function(datetime_string) {
+		var datetime = function() {}
+
+		// parse date
+		if(datetime_string && datetime_string.indexOf('/') !== -1) {
+			// split date into parts
+			var date = datetime_string.split('/');
+			datetime.day = parseInt(date[1]);
+			datetime.month = parseInt(date[0]);
+			if(date[2].indexOf(':') !== -1) {
+				// has time at end
+				year_time = date[2].split(' ');
+				datetime.year = parseInt(year_time[0]);
+			}
+			else {
+				datetime.year = parseInt(date[2]);
+			}
+		}
+		else {
+			// no date
+			datetime.day = 0;
+			datetime.month = 0;
+			datetime.year = 0;
+		}
+
+		// parse time
+		if(datetime_string && datetime_string.indexOf(':') !== -1) {
+			// split time into parts
+			var time = datetime_string.split(':');
+			if(time[0].indexOf('/') !== -1) {
+				// has date at beginning
+				year_time = time[0].split(' ');
+				datetime.hour = parseInt(year_time[1]);
+			}
+			else {
+				datetime.hour = parseInt(time[0]);
+			}
+			if(time[1].indexOf(' ') !== -1) {
+				// has am/pm at end
+				time_12hr = time[1].split(' ');
+				datetime.minute = parseInt(time_12hr[0]);
+				if(time_12hr[1].trim() == 'pm') {
+					datetime.minute += 12;
+				}
+			}
+			else {
+				datetime.minute = parseInt(time[1]);
+			}
+		}
+		else {
+			// no time
+			datetime.hour = 0;
+			datetime.minute = 0;
+		}
+
+		return datetime;
+	}
+
+	this.compare_datetime = function(datetime1, datetime2) {
+		if(datetime1.year > datetime2.year) {
+			return 1;
+		}
+		else if(datetime1.year == datetime2.year) {
+			if(datetime1.month > datetime2.month) {
+				return 1;
+			}
+			else if(datetime1.month == datetime2.month) {
+				if(datetime1.day > datetime2.day) {
+					return 1;
+				}
+				else if(datetime1.day == datetime2.day) {
+					if(datetime1.hour > datetime2.hour) {
+						return 1;
+					}
+					else if(datetime1.hour == datetime2.hour) {
+						if(datetime1.minute > datetime2.minute) {
+							return 1;
+						}
+						else if(datetime1.minute == datetime2.minute) {
+							return 0;
+						}
+						else {
+							return -1;
+						}
+					}
+					else {
+						return -1;
+					}
+				}
+				else {
+					return -1;
+				}
+			}
+			else {
+				return -1;
+			}
+		}
+		else {
+			return -1;
+		}
+	}
+
+	this.add_event = function(name, start, end, date, place, image_src, repeat, key) {
+		that.events[that.events.length] = new Event(name, start, end, date, place, image_src, repeat, key);
+	}
+
+	this.update = function(name, from, to, repeats, public) {
+		$(that.locator).empty();
+		var event_keys = [];
+		for(var i = 0; i < that.events.length; i++) {
+			var event_date = that.datetime(that.events[i].date);
+
+			var event_from = that.datetime(that.events[i].start);
+			event_from.day = event_date.day;
+			event_from.month = event_date.month;
+			event_from.year = event_date.year;
+			var event_to = that.datetime(that.events[i].end);
+			event_to.day = event_date.day;
+			event_to.month = event_date.month;
+			event_to.year = event_date.year;
+
+			var filter_from = that.datetime(from);
+			var filter_to = that.datetime(to);
+
+			if((!name || that.events[i].name.indexOf(name) !== -1) &&
+					(!from || that.compare_datetime(event_from, filter_from) >= 0) &&
+					(!to || that.compare_datetime(event_to, filter_to) <= 0) &&
+					(repeats || event_keys.indexOf(that.events[i].key) == -1)) {
+				event_keys[event_keys.length] = that.events[i].key;
+				if(public) {
+					$(that.locator).append(
+						'<div class="event_card">' +
+						    '<img src="' + that.events[i].image_src + '" class="event_card_image" />' +
+						    '<div class="event_card_info">' +
+								'<span class="event_name">' + that.events[i].name + '</span></br />' +
+								'<span class="event_details">' + that.events[i].start + ' - ' + that.events[i].end + '</br />' +
+								that.events[i].date + '<br />' +
+								that.events[i].place + '</span><br />' +
+								'<div class="event_links"><a href="/event" class="link">View</a><span class="right"><a href="javascript:;" class="link">Ignore</a> <a href="javascript:;" class="link">Attend</a></span></div>' +
+							'</div>' +
+						'</div>');
+				}
+				else {
+					$(that.locator).append(
+						'<div class="event_card">' +
+						    '<img src="' + that.events[i].image_src + '" class="event_card_image" />' +
+						    '<div class="event_card_info">' +
+								'<span class="event_name">' + that.events[i].name + '</span></br />' +
+								'<span class="event_details">' + that.events[i].start + ' - ' + that.events[i].end + '</br />' +
+								that.events[i].date + '<br />' +
+								that.events[i].place + '</span><br />' +
+								'<div class="event_links"><a href="/event" class="link">View</a><span class="right"><a href="javascript:;" class="link">Remove</a></span></div>' +
+							'</div>' +
+						'</div>');
+				}
+			}
+		}
+	}
+}
+
+var today = new Date().toLocaleDateString("en-US");
+
+var public_events = new EventsFeed('#public_events_scrollarea');
+var attending_events = new EventsFeed('#attending_events_scrollarea');
+
+$(".date_filter").datetimepicker();
+
+$("#public_search").click(
+	function() {
+		var name = String($("#public_text_filter").val()).trim();
+		var from = String($("#public_from").val()).trim();
+		var to = String($("#public_to").val()).trim();
+		var repeats = $("#public_repeats").is(':checked');
+		public_events.update(name, from, to, repeats, true);
+	})
+
+$("#attending_search").click(
+	function() {
+		var name = String($("#attending_text_filter").val()).trim();
+		var from = String($("#attending_from").val()).trim();
+		var to = String($("#attending_to").val()).trim();
+		var repeats = $("#attending_repeats").is(':checked');
+		attending_events.update(name, from, to, repeats, false);
+	})
+
+public_events.add_event('Fantastic Event Thing', '10:00 am', '1:00 pm', '10/10/2013', 'Secret Base', 'http://i250.photobucket.com/albums/gg271/CivBase/BZ2BG-800x600.gif', 'Once', 'key1');
+public_events.add_event('Another Event', '3:00 pm', '4:00 pm', '10/11/2013', 'Aperture Labs', 'http://i250.photobucket.com/albums/gg271/CivBase/Lies.gif', 'Once', 'key2');
+public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
+
+public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
+public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
+public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
+public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
+public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
+
+attending_events.add_event('Fantastic Event Thing', '1:00 pm', '4:00 pm', '10/10/2013', 'Memorial Union Sun Room', 'http://static.fjcdn.com/pictures/the+dark+loaf_68f0e1_4004032.jpg', 'Once', 'key4');
+
+public_events.update(null, null, null, false, true);
+attending_events.update(null, null, null, false, false);

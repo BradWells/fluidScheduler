@@ -43,10 +43,6 @@ p {
 	bottom: 14px;
 }
 
-.right {
-	float: right;
-}
-
 .static_bar {
 	position: absolute;
 	left: 0px;
@@ -167,6 +163,10 @@ p {
 	width: 400px;
 }
 
+.pane * {
+	float: none;
+}
+
 .pane_button {
 	margin-top: 10px;
 	padding: 5px;
@@ -217,8 +217,26 @@ p {
 	border-color: #CCCCCC;
 }
 
-.events_feed_filter table, .events_feed_filter th, .events_feed_filter td {
-	border: 1px solid black;
+.events_feed_table {
+	height: 100%;
+	width: 100%;
+}
+
+.filter_label {
+	width: 40px;
+	font-weight: bold;
+	text-align: right;
+	padding: 2px;
+	padding-right: 7px;
+}
+
+.text_filter {
+	width: 310px;
+	padding: 2px;
+}
+
+.date_filter_cell {
+	width: 135px;
 }
 
 .event_card {
@@ -229,29 +247,33 @@ p {
 	border-width: 1px;
 	border-style: solid;
 	border-color: black;
-}
-
-.event_card_image_wrapper {
-	margin: 5px;
+	background-color: #FFFFF3;
 }
 
 .event_card_image {
+	margin: 5px;
 	height: 75px;
 	width: 75px;
+	display: inline-block;
 }
 
 .event_card_info {
-	height: 75px;
+	position: relative;
+	bottom: 7px;
 	margin: 5px;
-}
-
-.event_card_info span {
-	float: top;
+	margin-bottom: 0px;
+	height: 75px;
+	width: 265px;
+	display: inline-block;
 }
 
 .event_name {
 	font-weight: bold;
 	font-size: 14px;
+}
+
+.event_links {
+	width: 100%;
 }
 
 
@@ -544,5 +566,9 @@ p {
 	border-color: #DEDEDE;
 	border-radius: 5px;
 	text-align: center;
+}
+
+.right {
+	float: right;
 }
 

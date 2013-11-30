@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-
 	<div id="graph" class="content">
 		<canvas id="workspace" width="1920" height="960"></canvas>
 	</div>
@@ -10,21 +9,20 @@
 			<h2 class="events_feed_title">Public Events Feed</h2>
 			<div id="public_events_scrollarea" class="events_feed_scrollarea"></div>
 			<div class="events_feed_filter">
-				<table style="background-color:blue;">
-					<tr style="background-color:white;">
+				<table class="events_feed_table">
+					<tr>
 						<td class="filter_label">Filter</td>
-						<td><input type="text" id="public_text_filter" /></td>
-						<td></td>
+						<td colspan="2"><input type="text" class="text_filter" id="public_text_filter" /></td>
 					</tr>
-					<tr style="background-color:red;">
+					<tr>
 						<td class="filter_label">From</td>
-						<td>Datebox</td>
-						<td><input type="checkbox" id="public_display_repeat" /></td>
+						<td class="date_filter_cell"><input type="text" class="date_filter" id="public_from" readonly /></td>
+						<td><input type="checkbox" id="public_repeats" />Display Repeats</td>
 					</tr>
-					<tr style="background-color:yellow;">
+					<tr>
 						<td class="filter_label">To</td>
-						<td>Datebox</td>
-						<td><button id="public_search">Search</button></td>
+						<td class="date_filter_cell"><input type="text" class="date_filter" id="public_to" readonly /></td>
+						<td><input type="submit" class="link_button" id="public_search" value="Search" /></td>
 					</tr>
 				</table>
 			</div>
@@ -46,21 +44,20 @@
 			<h2 class="events_feed_title">Attending Events Feed</h2>
 			<div id="attending_events_scrollarea" class="events_feed_scrollarea"></div>
 			<div class="events_feed_filter">
-				<table style="background-color:blue;">
-					<tr style="background-color:white;">
+				<table class="events_feed_table">
+					<tr>
 						<td class="filter_label">Filter</td>
-						<td><input type="text" id="attending_text_filter" /></td>
-						<td></td>
+						<td colspan="2"><input type="text" class="text_filter" id="attending_text_filter" /></td>
 					</tr>
-					<tr style="background-color:red;">
+					<tr>
 						<td class="filter_label">From</td>
-						<td>Datebox</td>
-						<td><input type="checkbox" id="attending_display_repeat" /></td>
+						<td class="date_filter_cell"><input type="text" class="date_filter" id="attending_from" readonly /></td>
+						<td><input type="checkbox" id="attending_repeats" />Display Repeats</td>
 					</tr>
-					<tr style="background-color:yellow;">
+					<tr>
 						<td class="filter_label">To</td>
-						<td>Datebox</td>
-						<td><button id="attending_search">Search</button></td>
+						<td class="date_filter_cell"><input type="text" class="date_filter" id="attending_to" readonly /></td>
+						<td><input type="submit" class="link_button" id="attending_search" value="Search" /></td>
 					</tr>
 				</table>
 			</div>
@@ -95,93 +92,49 @@
 	<script language="javascript" type="text/javascript" src="../static/js/renderer.js"></script>
 	<script language="javascript" type="text/javascript" src="../static/js/workspace.js"></script>
 
-	<script>
-		function Event(name, start, end, date, place, image_src, repeat, key) {
-			this.name = name;
-			this.start = start;
-			this.end = end;
-			this.date = date;
-			this.place = place;
-			this.image_src = image_src;
-			this.key = key;
-		}
-
-		function EventsFeed(locator) {
-			var that = this;
-
-			this.locator = locator;
-			this.events = new Array();
-
-			this.add_event = function(name, start, end, date, place, image_src, repeat, key) {
-				that.events[that.events.length] = new Event(name, start, end, date, place, image_src, repeat, key);
-			}
-
-			this.update = function(name, from, to, repeats) {
-				$(that.locator).empty();
-				for(var i = 0; i < that.events.length; i++) {
-					$(that.locator).append(
-						'<div class="event_card">' +
-						    '<div class="event_card_image_wrapper">' +
-						        '<img src="' + that.events[i].image_src + '" class="event_card_image" />' +
-						    '</div>' +
-						    '<div class="event_card_info">' +
-								'<span class="event_name">' + that.events[i].name + '</span></br />' +
-								'<span class="event_details">' + that.events[i].start + ' - ' + that.events[i].end + '</br />' +
-								that.events[i].date + '<br />' +
-								that.events[i].place + '</span><br />' +
-								'<span class="event_links"><a href="/event" class="link">View</a></span>' +
-							'</div>' +
-						'</div>');
-				}
-			}
-		}
-
-		var public_events = new EventsFeed('#public_events_scrollarea');
-		var attending_events = new EventsFeed('#attending_events_scrollarea');
-
-		var today = {{today}};
-
-		public_events.add_event('Fantastic Event Thing', '10:00 am', '1:00 pm', '10/10/2013', 'Secret Base', 'http://i250.photobucket.com/albums/gg271/CivBase/BZ2BG-800x600.gif', 'Once', 'key1');
-		public_events.add_event('Another Event', '3:00 pm', '4:00 pm', '10/11/2013', 'Aperture Labs', 'http://i250.photobucket.com/albums/gg271/CivBase/Lies.gif', 'Once', 'key2');
-		public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
-
-		public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
-		public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
-		public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
-		public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
-		public_events.add_event('Best Event', '5:00 pm', '7:00 pm', '10/14/2013', 'Hoover', 'http://i250.photobucket.com/albums/gg271/CivBase/polo.png', 'Once', 'key3');
-
-		attending_events.add_event('Fantastic Event Thing', '1:00 pm', '4:00 pm', '10/10/2013', 'Memorial Union Sun Room', 'http://static.fjcdn.com/pictures/the+dark+loaf_68f0e1_4004032.jpg', 'Once', 'key4');
-	</script>
-
 	{% for e in public_events %}
 		<script>
 			public_events.add_event(
-				{{e.get_name()}},
-				{{e.get_start()}},
-				{{e.get_end()}},
-				{{e.get_date()}},
-				{{e.get_place()}},
-				{{e.get_image()}},
-				{{e.get_key()}});
+				{{e.name}},
+				{{e.start}},
+				{{e.end}},
+				{{e.date}},
+				{{e.place}},
+				{{e.image}},
+				{{e.key}});
 		</script>
 	{% endfor %}
 
 	{% for e in attending_events %}
 		<script>
 			attending_events.add_event(
-				{{e.get_name()}},
-				{{e.get_start()}},
-				{{e.get_end()}},
-				{{e.get_date()}},
-				{{e.get_place()}},
-				{{e.get_image()}},
-				{{e.get_key()}});
+				{{e.name}},
+				{{e.start}},
+				{{e.end}},
+				{{e.date}},
+				{{e.place}},
+				{{e.image}},
+				{{e.key}});
 		</script>
 	{% endfor %}
 
-	<script>
-		public_events.update(null, null, null, null);
-		attending_events.update(null, null, null, null);
-	</script>
+	{% for e in created_events %}
+		<script>
+			add_event(
+				{{e.name}},
+				{{e.image}},
+				{{e.start}},
+				{{e.end}},
+				{{e.attending}});
+		</script>
+	{% endfor %}
+
+	{% for e in created_contacts %}
+		<script>
+			add_contact(
+				{{e.name}},
+				{{e.image}},
+				{{e.email}});
+		</script>
+	{% endfor %}
 {% endblock %}
