@@ -198,6 +198,7 @@ p {
 	margin: 10px;
 
 	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .events_feed_filter {
@@ -214,6 +215,43 @@ p {
 	border: 1px;
 	border-style: solid;
 	border-color: #CCCCCC;
+}
+
+.events_feed_filter table, .events_feed_filter th, .events_feed_filter td {
+	border: 1px solid black;
+}
+
+.event_card {
+	width: 365px;
+	padding: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+.event_card_image_wrapper {
+	margin: 5px;
+}
+
+.event_card_image {
+	height: 75px;
+	width: 75px;
+}
+
+.event_card_info {
+	height: 75px;
+	margin: 5px;
+}
+
+.event_card_info span {
+	float: top;
+}
+
+.event_name {
+	font-weight: bold;
+	font-size: 14px;
 }
 
 
