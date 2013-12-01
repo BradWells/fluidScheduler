@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+	<div id="topper" class="info">
+		<a href="/workspace" id="back_link">
+			<img src="../static/img/glyphicons/glyphicons_216_circle_arrow_left.png" class="icon_image"> 
+			<span class="topper_text">Return to workspace</span>
+		</a>
+		<div id="top_right">
+			{% block top_right %}{% endblock %}
+		</div>
+	</div>
+
+	<div id="upper">
+		<div id="event_imgage_wrapper" class="info">
+			{% block event_image %}{% endblock %}
+		</div>
+
+		<div id="event_text" class="info">
+			{% block event_text %}{% endblock %}
+		</div>
+
+		<div id="attender_contact">
+			{% block attender_contact %}{% endblock %}
+		</div>
+		<div id="attender_links">
+			{% block attender_links %}{% endblock %}
+		</div>
+	</div>
+
+	<div id="grid_wrapper" class="info">
+		<div id="grid">
+			<div id="gridster">
+				<ul>
+					{% block gridster %}{% endblock %}
+				</ul>
+			</div>
+		</div>
+		<div id="grid_spacer"></div>
+	</div>
+{% endblock %}
+{% block scripts %}
+	<script src="../static/js/res/jquery.gridster.js"></script>
+
+	<script language="javascript" type="text/javascript" src="../static/js/event.js"></script>
+{% endblock %}

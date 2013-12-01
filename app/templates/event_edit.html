@@ -1,0 +1,67 @@
+{% extends "base_event.html" %}
+{% block top_right %}
+	<a href="javascript:;" id="back_link">
+		<img src="../static/img/glyphicons/glyphicons_443_floppy_disk.png" class="icon_image"> 
+		<span class="topper_text">Save Changes</span>
+	</a>
+	<span id="top_right_spacer"></span>
+	<a href="/event" id="back_link">
+		<img src="../static/img/glyphicons/glyphicons_207_remove_2.png" class="icon_image"> 
+		<span class="topper_text">Cancel</span>
+	</a>
+{% endblock %}
+{% block event_image %}
+	<div id="edit_event_image">
+		<div id="edit_event_image_field">
+			<span class="label">New Image Source</span><br />
+			<input type="text" class="event_edit_input" id="edit_event_image_input" />
+		</div>
+	</div>
+{% endblock %}
+{% block event_text %}
+	<div>
+		<table id="event_edit_table">
+			<tr>
+				<td class="label">Event Name</td>
+				<td><input type="text" class="event_edit_input" id="edit_event_name" value="{{event.name}}" /></td>
+			</tr>
+			<tr>
+				<td class="label">Start Time</td>
+				<td><input type="text" class="event_edit_input time_picker" id="edit_start_time" value="{{event.start}}" readonly /></td>
+			</tr>
+			<tr>
+				<td class="label">End Time</td>
+				<td><input type="text" class="event_edit_input time_picker" id="edit_end_time" value="{{event.end}}" readonly /></td>
+			</tr>
+			<tr>
+				<td class="label">Date</td>
+				<td><input type="text" class="event_edit_input date_picker" id="edit_date" value="{{event.date}}" readonly /></td>
+			</tr>
+			<tr>
+				<td class="label">Repeat</td>
+				<td>Select</td>
+			</tr>
+			<tr>
+				<td class="label">View</td>
+				<td>Private Public</td>
+			</tr>
+		</table>
+	</div>
+		Room Picker
+	<div>
+	</div>
+{% endblock %}
+{% block gridster %}
+	<li data-row="1" data-col="1" data-sizex="2" data-sizey="2"></li>
+	<li data-row="1" data-col="3" data-sizex="2" data-sizey="3"></li>
+	<li data-row="1" data-col="4" data-sizex="1" data-sizey="1"></li>
+	<li data-row="1" data-col="6" data-sizex="1" data-sizey="1"></li>
+	<li data-row="1" data-col="7" data-sizex="1" data-sizey="1"></li>
+	<li data-row="1" data-col="8" data-sizex="1" data-sizey="2"></li>
+	<li data-row="2" data-col="5" data-sizex="1" data-sizey="1"></li>
+	<li data-row="2" data-col="6" data-sizex="2" data-sizey="1"></li>
+	<li data-row="3" data-col="1" data-sizex="1" data-sizey="1"></li>
+	<li data-row="3" data-col="2" data-sizex="1" data-sizey="1"></li>
+	<li data-row="3" data-col="5" data-sizex="1" data-sizey="1"></li>
+	<li data-row="3" data-col="6" data-sizex="3" data-sizey="1"></li>
+{% endblock %}
