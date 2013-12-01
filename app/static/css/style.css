@@ -270,12 +270,12 @@ p {
 	display: inline-block;
 }
 
-.event_name {
+.event_card_name {
 	font-weight: bold;
 	font-size: 14px;
 }
 
-.event_links {
+.event_card_links {
 	width: 100%;
 }
 
@@ -332,14 +332,35 @@ p {
 }
 
 #event_text {
-	float: left;
-	height: 350px;
+	position: absolute;
+	top: 45px;
+	left: 360px;
+	height: 340px;
+	padding-top: 15px;
+	font-size: 16pt;
 }
 
-#attender {
+#event_edit_table td {
+	height: 40px;
+}
+
+.event_edit_input {
+	width: 275px;
+	height: 20px;
+	padding: 3px;
+	font-size: 12pt;
+}
+
+#attender_contact {
 	position: absolute;
-	right: 10px;
-	top: 370px;
+	right: 25px;
+	top: 335px;
+}
+
+#attender_links {
+	position: absolute;
+	right: 20px;
+	top: 380px;
 }
 
 #upper {
@@ -405,6 +426,20 @@ ul, ol {
 	margin: 5px;
 }
 
+#edit_event_image {
+	height: 340px;
+	width: 340px;
+	margin: 5px;
+	background-color: #AAAAAA;
+	text-align: center;
+	font-size: 16pt;
+}
+
+#edit_event_image_field {
+	position: relative;
+	top: 120px;
+}
+
 .info {
 	padding: 5px;
 	margin: 5px;
@@ -422,8 +457,14 @@ ul, ol {
 	font-weight: bold;
 }
 
-#share {
+#top_right {
 	float: right;
+}
+
+#top_right_spacer {
+	height: 100%;
+	width: 15px;
+	background-color: red;
 }
 
 #share_link {

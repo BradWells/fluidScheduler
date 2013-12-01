@@ -120,7 +120,24 @@ def workspace():
 @app.route('/event')
 @login_required
 def event():
-	return render_template('event.html')
+	return render_template('event.html', anonymous=True, attending=False, invites_sent=False, creator=True,
+		event={'name': 'My Event!!!',
+		       'creator': 'Wilfred Benchstopper',
+		       'start': '12:00 am',
+		       'end': '11:59 pm',
+		       'date': '8/23/13',
+		       'place': 'Central Campus'})
+
+@app.route('/event_edit')
+@login_required
+def edit_event():
+	return render_template('event_edit.html',
+		event={'name': 'My Event!!!',
+		       'creator': 'Wilfred Benchstopper',
+		       'start': '12:00 am',
+		       'end': '11:59 pm',
+		       'date': '8/23/13',
+		       'place': 'Central Campus'})
 
 
 

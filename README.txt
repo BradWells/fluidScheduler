@@ -1,10 +1,13 @@
 
 **SETUP INSTRUCTIONS**
 
-	These instructions are for setting up the server locally using the command line.
+	These instructions are for setting up the server locally using the command 
+	line.
 
 
-	Some of these instructions will require administrative access.  On windows, the console must be started with administrative privilages.  On osx/linux, the command must be prefixed by 'sudo'.
+	Some of these instructions will require administrative access.  On windows, 
+	the console must be started with administrative privilages.  On osx/linux, 
+	the command must be prefixed by 'sudo'.
 
 
 	You may need to modify your system PATH to make some commands available.
@@ -23,7 +26,9 @@
 			WINDOWS
 				pip install virtualenv
 
-		4. Create your virtual environment in some dirrectory which you will remember.  These instructions will use the name "cs319" for your virtual environment and store it in "~/virtualenvs".
+		4. Create your virtual environment in some dirrectory which you will 
+		   remember.  These instructions will use the name "cs319" for your 
+		   virtual environment and store it in "~/virtualenvs".
 			OSX / LINUX
 				cd ~
 				mkdir virtualenvs
@@ -37,7 +42,10 @@
 
 
 	Preparing to Start the Server
-		5. Navigate to your virtual environments directory (where you created the virtual environment) and activate it.  To deactivate it, you can just use the "deactivate" command, although you should not run the server without your virtual environment activated.
+		5. Navigate to your virtual environments directory (where you created 
+		   the virtual environment) and activate it.  To deactivate it, you can 
+		   just use the "deactivate" command, although you should not run the 
+		   server without your virtual environment activated.
 			OSX / LINUX
 				cd ~/virtualenvs
 				source cs319/bin/activate

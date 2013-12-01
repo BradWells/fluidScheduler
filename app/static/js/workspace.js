@@ -551,11 +551,11 @@ function EventsFeed(locator) {
 						'<div class="event_card">' +
 						    '<img src="' + that.events[i].image_src + '" class="event_card_image" />' +
 						    '<div class="event_card_info">' +
-								'<span class="event_name">' + that.events[i].name + '</span></br />' +
-								'<span class="event_details">' + that.events[i].start + ' - ' + that.events[i].end + '</br />' +
+								'<span class="event_card_name">' + that.events[i].name + '</span></br />' +
+								'<span class="event_card_details">' + that.events[i].start + ' - ' + that.events[i].end + '</br />' +
 								that.events[i].date + '<br />' +
 								that.events[i].place + '</span><br />' +
-								'<div class="event_links"><a href="/event" class="link">View</a><span class="right"><a href="javascript:;" class="link">Ignore</a> <a href="javascript:;" class="link">Attend</a></span></div>' +
+								'<div class="event_card_links"><a href="/event" class="link">View</a><span class="right"><a href="javascript:;" class="link">Ignore</a> <a href="javascript:;" class="link">Attend</a></span></div>' +
 							'</div>' +
 						'</div>');
 				}
@@ -564,11 +564,11 @@ function EventsFeed(locator) {
 						'<div class="event_card">' +
 						    '<img src="' + that.events[i].image_src + '" class="event_card_image" />' +
 						    '<div class="event_card_info">' +
-								'<span class="event_name">' + that.events[i].name + '</span></br />' +
-								'<span class="event_details">' + that.events[i].start + ' - ' + that.events[i].end + '</br />' +
+								'<span class="event_card_name">' + that.events[i].name + '</span></br />' +
+								'<span class="event_card_details">' + that.events[i].start + ' - ' + that.events[i].end + '</br />' +
 								that.events[i].date + '<br />' +
 								that.events[i].place + '</span><br />' +
-								'<div class="event_links"><a href="/event" class="link">View</a><span class="right"><a href="javascript:;" class="link">Remove</a></span></div>' +
+								'<div class="event_card_links"><a href="/event" class="link">View</a><span class="right"><a href="javascript:;" class="link">Remove</a></span></div>' +
 							'</div>' +
 						'</div>');
 				}
