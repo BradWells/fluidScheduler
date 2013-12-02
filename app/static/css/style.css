@@ -407,8 +407,7 @@ ul, ol {
 
 #gridster {
 	position: relative;
-	left: -210px;
-    width: 940px;
+    width: 1190px;
     margin: 0px auto;
 
     opacity: .8;
@@ -420,11 +419,22 @@ ul, ol {
     transition: opacity .6s;
 }
 
+#gridster ul {
+	width: 100%;
+}
+
 #gridster .gs_w {
     background: #FFF;
     cursor: pointer;
     -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+#add_item {
+	position: relative;
+	bottom: 40px;
+	margin: 10px;
+	float: right;
 }
 
 #event_image {
@@ -670,4 +680,3 @@ ul, ol {
 .right {
 	float: right;
 }
-
