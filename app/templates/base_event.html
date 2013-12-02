@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% block libraries %}
+	<script src="../static/js/res/knockout.min.js"></script>
+	<script src="../static/js/res/jquery.gridster.js"></script>
+	<link rel="stylesheet" type="text/css" href="../static/css/res/gridster.css">
+{% endblock %}
 {% block content %}
 	<div id="topper" class="info">
 		<a href="/workspace" id="back_link">
@@ -29,17 +34,21 @@
 
 	<div id="grid_wrapper" class="info">
 		<div id="grid">
+			<button data-bind="click: AddOne" id="add_item">Add</button>
 			<div id="gridster">
-				<ul>
-					{% block gridster %}{% endblock %}
-				</ul>
+			    <ul id="layout" data-bind="foreach: myData">
+			        <li class="new" data-bind="attr:{
+							'data-row':datarow,
+							'data-col':datacol,
+							'data-sizex':datasizex,
+							'data-sizey':datasizey
+						},html:html, doubleClick: $parent.AddOne"></li>
+			    </ul>
 			</div>
 		</div>
 		<div id="grid_spacer"></div>
 	</div>
 {% endblock %}
 {% block scripts %}
-	<script src="../static/js/res/jquery.gridster.js"></script>
-
 	<script language="javascript" type="text/javascript" src="../static/js/event.js"></script>
 {% endblock %}
