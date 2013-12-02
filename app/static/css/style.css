@@ -16,6 +16,10 @@ p {
 	margin-top: 10px;
 }
 
+.hidden {
+	display: none;
+}
+
 
 /* Header and Footer */
 
@@ -218,6 +222,9 @@ p {
 	border: 1px;
 	border-style: solid;
 	border-color: #CCCCCC;
+
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 .events_feed_table {
@@ -243,7 +250,7 @@ p {
 }
 
 .event_card {
-	width: 365px;
+	width: 350px;
 	padding: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -266,7 +273,7 @@ p {
 	margin: 5px;
 	margin-bottom: 0px;
 	height: 75px;
-	width: 265px;
+	width: 250px;
 	display: inline-block;
 }
 
