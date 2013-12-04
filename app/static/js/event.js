@@ -1,3 +1,8 @@
+$("#edit_start_time").timepicker();
+$("#edit_end_time").timepicker();
+$("#edit_date").datepicker();
+
+
 //This is some widget data to start the process
 var gridData = [ {html:'Beep', datarow:1, datacol:1, datasizex:1, datasizey:1},
     {html:'Boop', datarow:2, datacol:1, datasizex:1, datasizey:1},

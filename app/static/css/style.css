@@ -347,17 +347,6 @@ p {
 	font-size: 16pt;
 }
 
-#event_edit_table td {
-	height: 40px;
-}
-
-.event_edit_input {
-	width: 275px;
-	height: 20px;
-	padding: 3px;
-	font-size: 12pt;
-}
-
 #attender_contact {
 	position: absolute;
 	right: 25px;
@@ -679,4 +668,27 @@ ul, ol {
 
 .right {
 	float: right;
+}
+
+
+/* Event Edit */
+
+#event_edit_table_wrapper {
+	display: inline-block;
+}
+
+#room_picker_wrapper {
+	display: inline-block;
+}
+
+#event_edit_table td {
+	height: 40px;
+	padding: 5px;
+}
+
+.event_edit_input {
+	width: 275px;
+	height: 20px;
+	padding: 3px;
+	font-size: 12pt;
 }

@@ -234,8 +234,9 @@ var add_contact = function(name, image, email) {
 
 var open_box = function(button, buttonText, box, content) {
 	button.text(buttonText);
-	box.animate({'bottom': '19px'}, 1000);
 	box.removeClass('hidden');
+	box.removeClass('closed');
+	box.animate({'bottom': '19px'}, 1000);
 	box.empty();
 	box.html(content);
 
@@ -243,9 +244,15 @@ var open_box = function(button, buttonText, box, content) {
 
 var close_box = function(button, buttonText, box) {
 	button.text(buttonText);
-	box.animate({'bottom': '-351px'}, 1000);
-	box.addClass('hidden');
-	box.empty();
+	box.animate({'bottom': '-351px'}, 
+		{
+			duration: 1000,
+			complete: function() {
+				box.addClass('hidden');
+				box.addClass('closed');
+				box.empty();
+			}
+		});
 }
 
 $("#add_event").click(
@@ -253,10 +260,10 @@ $("#add_event").click(
 		var that = $(this);
 		var box = $("#add_event_form");
 		var other_box = $("#add_contact_form");
-		if(!other_box.hasClass('hidden')) {
+		if(!other_box.hasClass('closed')) {
 			close_box($("#add_contact"), "Add Contact", other_box);
 		}
-		if(box.hasClass('hidden')) {
+		if(box.hasClass('closed')) {
 			open_box(that, "Cancel", box, add_event_content);
 
 			$('#start').datetimepicker();
@@ -285,10 +292,10 @@ $("#add_contact").click(
 		var that = $(this);
 		var box = $("#add_contact_form");
 		var other_box = $("#add_event_form");
-		if(!other_box.hasClass('hidden')) {
+		if(!other_box.hasClass('closed')) {
 			close_box($("#add_event"), "Add Event", other_box);
 		}
-		if(box.hasClass('hidden')) {
+		if(box.hasClass('closed')) {
 			open_box(that, "Cancel", box, add_contact_content);
 
 			$('#accordion').accordion({ collapsible: "true", animate: 0 });
@@ -365,17 +372,17 @@ $("#slider").slider({
 $("#public_events_button").click(
 	function() {
 		var pane = $("#public_events_feed");
-		if(pane.hasClass('hidden')) {
+		if(pane.hasClass('closed')) {
 			// show
 			pane.animate({'left': '-2px'}, 1000);
-			pane.removeClass('hidden');
+			pane.removeClass('closed');
 			$(this).empty();
 			$(this).append('<img src="../static/img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
 		else {
 			// hide
 			pane.animate({'left': '-402px'}, 1000);
-			pane.addClass('hidden');
+			pane.addClass('closed');
 			$(this).empty();
 			$(this).append('<img src="../static/img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
@@ -384,17 +391,17 @@ $("#public_events_button").click(
 $("#attending_events_button").click(
 	function() {
 		var pane = $("#attending_events_feed");
-		if(pane.hasClass('hidden')) {
+		if(pane.hasClass('closed')) {
 			// show
 			pane.animate({'right': '-2px'}, 1000);
-			pane.removeClass('hidden');
+			pane.removeClass('closed');
 			$(this).empty();
 			$(this).append('<img src="../static/img/glyphicons/glyphicons_223_chevron-right.png" />');
 		}
 		else {
 			// hide
 			pane.animate({'right': '-402px'}, 1000);
-			pane.addClass('hidden');
+			pane.addClass('closed');
 			$(this).empty();
 			$(this).append('<img src="../static/img/glyphicons/glyphicons_224_chevron-left.png" />');
 		}
