@@ -77,8 +77,8 @@
           var w = Math.max(w, 30);
 
           if (!(""+label).match(/^[ \t]*$/)){
-            pt.x = Math.floor(pt.x)
-            pt.y = Math.floor(pt.y)
+            pt.x = Math.floor(pt.x) * zoom;
+            pt.y = Math.floor(pt.y) * zoom;
           }else{
             label = null
           }
@@ -150,6 +150,8 @@
           // find the start point
           var tail = intersect_line_box(pt1, pt2, nodeBoxes[edge.source.name])
           var head = intersect_line_box(tail, pt2, nodeBoxes[edge.target.name])
+
+          // console.log("pt1: " + pt1 + "\npt2: " + pt2 + "\ntail: " + tail + "\nhead: " + head);
 
           ctx.save() 
             ctx.beginPath()
