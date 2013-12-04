@@ -73,6 +73,11 @@ p {
 	font-weight: bold;
 }
 
+.image_sm {
+	width: 15px;
+	height: 15px;
+}
+
 .icon_image {
 	width: 20px;
 	height: 20px;
