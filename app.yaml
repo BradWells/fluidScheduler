@@ -1,0 +1,17 @@
+application: cs319-proj
+version: 0-1
+runtime: python27
+api_version: 1
+threadsafe: no
+
+handlers:
+
+- url: .*
+  script: views.app
+
+  libraries:
+  - name: jinja2
+    version: "2.6"
+  - name: markupsafe
+    version: "0.15"
+

@@ -8,6 +8,10 @@ from forms import ForgotForm, LoginForm, RegisterForm, SettingsForm
 from models import User
 from threading import Thread
 
+#Google App Engine Compatability
+app = Flask(__name__)
+app.config['DEBUG'] = True
+
 @app.route('/')
 @app.route('/index')
 def index():
